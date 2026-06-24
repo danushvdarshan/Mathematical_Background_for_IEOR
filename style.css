@@ -302,11 +302,22 @@ body {
    DYNAMIC SLIDING 6-BASKETS SYSTEM GRID
    ========================================================================== */
 .baskets-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr));
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* Forces exactly 3 boxes per row */
     gap: 24px;
+    
+    /* This handles the sliding up and fading in */
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.baskets-grid.hidden {
+    opacity: 0 !important;
+    transform: translateY(40px) !important;
+    pointer-events: none; /* Prevents clicking while hidden */
+    /* DO NOT put display: none here! */
+}
 
 .basket-card {
     background: #ffffff;
