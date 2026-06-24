@@ -542,10 +542,6 @@ function renderStudentBaskets(selectedCollegeKey) {
 }
 
 // ==========================================================================
-// 6 & 7. UNIFIED LIFECYCLE ENGINE & INTERACTIVITY
-// ==========================================================================
-
-// ==========================================================================
 // 6 & 7. UNIFIED LIFECYCLE ENGINE & INTERACTIVITY (WITH PRIORITY BADGES)
 // ==========================================================================
 
@@ -580,6 +576,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 basketsGrid.classList.add("visible");
                 
                 if (actionPlanBox) {
+                    // ---> INJECT DETAILED MINI-BOXES HERE <---
+                    generateDetailedActionPlan(actionPlanBox);
+                    
                     actionPlanBox.style.display = "block";
                     setTimeout(() => { actionPlanBox.classList.add("visible"); }, 50);
                 }
@@ -604,15 +603,17 @@ function populateHomeCourseTable() {
         
         // Match clean visual style tags for our future-proof priorities
         let priorityClass = "tag-default";
-        if (data.priority.includes("Highly Vital")) priorityClass = "tag-vital";
-        if (data.priority.includes("Foundational")) priorityClass = "tag-foundational";
-        if (data.priority.includes("Impact")) priorityClass = "tag-impact";
+        const pLabel = data.Priority || data.priority || "Standard"; // Fallback for safety
+
+        if (pLabel.includes("Vital")) priorityClass = "tag-vital";
+        if (pLabel.includes("Foundational")) priorityClass = "tag-foundational";
+        if (pLabel.includes("Impact")) priorityClass = "tag-impact";
 
         row.innerHTML = `
             <td class="course-title-cell">
                 <div class="course-meta-wrapper">
                     <span class="course-name-text">${courseName}</span>
-                    <span class="priority-badge ${priorityClass}">${data.priority}</span>
+                    <span class="priority-badge ${priorityClass}">${pLabel}</span>
                 </div>
             </td>
             <td class="weight-cell text-center">${data["Linear Algebra"]}%</td>
@@ -689,4 +690,46 @@ function toggleDepthDetail(elementId) {
     } else {
         target.style.display = "none";
     }
+}
+
+// ==========================================================================
+// TARGETED SELF-STUDY ACTION PLAN GENERATOR (THE MINI BOXES)
+// ==========================================================================
+function generateDetailedActionPlan(container) {
+    if (!container) return;
+
+    container.innerHTML = `
+        <h2>🚀 Personalized Remediation Strategy</h2>
+        <p class="plan-intro">Based on your specific curriculum overlap, focus on these targeted study areas prior to IIT Bombay Semester 1 registration:</p>
+        
+        <div class="plan-grid">
+            <div class="plan-item plan-critical">
+                <h4>Stochastic Processes <span class="severity-tag">Weak Gap</span></h4>
+                <p>Your undergraduate track lacks formal exposure to Markov Chains, Queuing Theory, and advanced probability models.</p>
+                <div class="resource-tip">
+                    <strong>📚 Remedy:</strong> Study Sheldon Ross <em>"Stochastic Processes"</em> or MIT OCW 6.262.
+                </div>
+            </div>
+
+            <div class="plan-item plan-warning">
+                <h4>Advanced Optimization <span class="severity-tag">Manageable</span></h4>
+                <p>You have baseline engineering optimization, but IEOR requires deep mathematical proofs (KKT Conditions, Simplex).</p>
+                <div class="resource-tip">
+                    <strong>📺 Remedy:</strong> Review Stephen Boyd's <em>Convex Optimization</em> (Stanford YouTube).
+                </div>
+            </div>
+
+            <div class="plan-item" style="border-left: 4px solid #48bb78;">
+                <h4>Calculus &amp; Lin. Algebra <span class="severity-tag" style="background: #f0fff4; color: #276749; border: 1px solid #9ae6b4;">Strong Foundation</span></h4>
+                <p>Your engineering background provides a rigorous base in ODEs/PDEs, Taylor series, and Matrix theory.</p>
+                <div class="resource-tip">
+                    <strong>✅ Remedy:</strong> Light refresher on Eigen decomposition and Multivariable Jacobians.
+                </div>
+            </div>
+        </div>
+
+        <div class="action-footer-note">
+            <strong>Advisor Note:</strong> Do not attempt to bridge everything simultaneously. Prioritize clearing your <strong style="color: #c53030;">Weak Gaps</strong> first to prevent immediate burnout during coursework.
+        </div>
+    `;
 }
