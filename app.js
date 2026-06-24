@@ -625,18 +625,52 @@ function populateHomeCourseTable() {
     });
 }
 
-// Live interactive keyword search across all rows
+// Variable to track the active market trend priority pill state
+let currentPriorityFilter = "ALL";
+
+// Advanced Priority Tab Filter Control Function
+function applyPriorityFilter(priorityKeyword, element) {
+    // Toggle class highlight markers on filter buttons
+    const pills = document.querySelectorAll('.filter-pill');
+    pills.forEach(pill => pill.classList.remove('active'));
+    element.classList.add('active');
+
+    // Update global state tracking context
+    currentPriorityFilter = priorityKeyword.toUpperCase();
+    
+    // Execute global filter evaluation pipeline
+    filterMasterTable();
+}
+
+// Unified Omni-Filter Engine (Combines text string and active category pill states)
 function filterMasterTable() {
-    const input = document.getElementById("matrix-search");
-    const filter = input.value.toUpperCase();
+    const searchInput = document.getElementById("matrix-search");
+    const textFilter = searchInput ? searchInput.value.toUpperCase() : "";
     const tableBody = document.getElementById("ieor-courses-table-body");
+    if (!tableBody) return;
+    
     const tr = tableBody.getElementsByTagName("tr");
 
     for (let i = 0; i < tr.length; i++) {
-        const td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            const txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        const titleCell = tr[i].getElementsByClassName("course-title-cell")[0];
+        if (titleCell) {
+            // Read title and priority badge content strings
+            const txtValue = titleCell.textContent || titleCell.innerText;
+            const upperText = txtValue.toUpperCase();
+
+            // Evaluate text query presence
+            const matchesSearch = upperText.indexOf(textFilter) > -1;
+            
+            // Evaluate structural market-priority matching constraints
+            let matchesPriority = false;
+            if (currentPriorityFilter === "ALL") {
+                matchesPriority = true;
+            } else if (upperText.indexOf(currentPriorityFilter) > -1) {
+                matchesPriority = true;
+            }
+
+            // Cross-evaluate match criteria
+            if (matchesSearch && matchesPriority) {
                 tr[i].style.display = "";
             } else {
                 tr[i].style.display = "none";
@@ -645,10 +679,14 @@ function filterMasterTable() {
     }
 }
 
-// Expandable math definition toggler
+// Robust layout expansion handler with safety fallback states
 function toggleDepthDetail(elementId) {
     const target = document.getElementById(elementId);
-    const parent = target.parentElement;
-    
-    parent.classList.toggle("active");
+    if (!target) return;
+
+    if (target.style.display === "none" || target.style.display === "") {
+        target.style.display = "block";
+    } else {
+        target.style.display = "none";
+    }
 }
