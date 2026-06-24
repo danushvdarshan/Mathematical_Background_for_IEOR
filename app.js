@@ -1,5 +1,6 @@
-// 1. THE COMPLETE COURSE WEIGHT MATRIX (For the Home Table View)
-// Represents the percentage influence of each domain on all 76 items in the IITB IEOR CSV.
+// ==========================================================================
+// 1. THE COMPLETE COURSE WEIGHT MATRIX
+// ==========================================================================
 const ieorCourseMatrix = {
     "Introduction to IE and OR": {
         "Linear Algebra": 0,
@@ -521,7 +522,9 @@ const ieorCourseMatrix = {
     }
 };
 
-// 3. THE NIT PROFILES (For the 6-Basket view)
+// ==========================================================================
+// 2. THE NIT PROFILES (For the 6-Basket view)
+// ==========================================================================
 const nitProfiles = {
     "svnit_surat": {
         "Linear Algebra": [
@@ -531,7 +534,7 @@ const nitProfiles = {
             "Systems of Linear Homogeneous & Non-Homogeneous Equations",
             "Eigenvalues, Eigenvectors, and Cayley-Hamilton Theorem"
         ],
-        "Optimization": [], // Left empty intentionally
+        "Optimization": [],
         "Probability & Statistics": [
             "Random Variables, Discrete & Continuous Distributions",
             "Probability Density Function (PDF) & Cumulative Distribution Function (CDF)",
@@ -539,7 +542,7 @@ const nitProfiles = {
             "Standard Distributions (Binomial, Poisson, Normal)",
             "Bivariate Distributions (Joint, Marginal, and Conditional Distributions)"
         ],
-        "Stochastic Processes": [], // Left empty intentionally
+        "Stochastic Processes": [],
         "Calculus": [
             "Multivariable Calculus: Functions of several variables & Partial Derivatives",
             "Total Derivative & Euler's Theorem on Homogeneous Functions",
@@ -555,21 +558,21 @@ const nitProfiles = {
             "Rectification, Quadrature, Volume & Surface Area of Revolution",
             "Infinite Series Convergence (Ratio, Comparison, Integral, Root, Leibniz tests)"
         ]
-    }
+    },
     "vnit_nagpur": {
         "Linear Algebra": [
             "Matrices: Rank of matrix and Consistency of linear systems",
             "Eigenvalues, Eigenvectors, and Cayley-Hamilton Theorem",
             "Diagonalization of matrices"
         ],
-        "Optimization": [], // Left empty intentionally
+        "Optimization": [],
         "Probability & Statistics": [
             "Probability Theory: Axioms, Conditional Probability, and Bayes Theorem",
             "Random Variables: Discrete & Continuous variables (PMF, PDF, CDF)",
             "Mathematical Expectation: Expectation, Variance, and MGF",
             "Standard Distributions: Binomial, Poisson, and Normal Distributions"
         ],
-        "Stochastic Processes": [], // Left empty intentionally
+        "Stochastic Processes": [],
         "Calculus": [
             "Partial Differentiation: Taylor's theorem, Maxima & Minima for two variables",
             "Lagrange's Multipliers for constrained optimization",
@@ -586,8 +589,8 @@ const nitProfiles = {
             "Numerical Methods: Roots of equations (Regula-Falsi, Newton-Raphson)",
             "Numerical Linear Algebra: Gauss elimination and Gauss-Seidel methods"
         ]
-    }
-   "nitc_eng_phys": {
+    },
+    "nitc_eng_phys": {
         "Linear Algebra": [
             "Vector Spaces & Linear Transformations (Review, Minimal Polynomials, Diagonalizability)",
             "Inner Product Spaces (Norms, Orthonormal Basis, Orthogonal Complement, Direct Sum, Orthogonal Projection)",
@@ -597,7 +600,7 @@ const nitProfiles = {
             "Singular Value Decomposition (SVD) & Low-Rank Approximation",
             "Data & Optimization Approximations (Eckart-Young Theorem, Pseudoinverse, Least Square Approximation)"
         ],
-        "Optimization": [], // Left empty intentionally
+        "Optimization": [],
         "Probability & Statistics": [
             "Probability Theory Foundations: Axioms, Conditional Probability, and Bayes Theorem",
             "Random Variables: Expectation, Mean, Variance, and Moment Generating Functions (MGF)",
@@ -610,7 +613,7 @@ const nitProfiles = {
             "Statistical Estimation: Point Estimation, Interval Estimation, and Confidence Intervals for Mean and Variance",
             "Hypothesis Testing: Type I & Type II errors, Z-test, t-test, and Chi-square Goodness-of-Fit test"
         ],
-        "Stochastic Processes": [], // Left empty intentionally
+        "Stochastic Processes": [],
         "Calculus": [
             "Single Variable Calculus: Mean Value Theorems & Taylor expansions",
             "Multivariable Calculus: Partial derivatives, Jacobians, Maxima & Minima",
@@ -628,7 +631,7 @@ const nitProfiles = {
             "Laplace Transforms: Inverse transforms, Convolution, and ODE applications",
             "Fourier Analysis: Fourier Series, Half-range expansions, and Fourier Transforms"
         ]
-    }
+    },
     "nitc_mech": {
         "Linear Algebra": [
             "Systems of linear equations, Gauss elimination, and Row echelon form",
@@ -639,7 +642,7 @@ const nitProfiles = {
             "Cayley-Hamilton Theorem",
             "Special Real Matrices (Symmetric, Skew-symmetric, and Orthogonal matrices)"
         ],
-        "Optimization": [], // Left empty intentionally
+        "Optimization": [],
         "Probability & Statistics": [
             "Random Variables: Expectations, Mean, Variance, MGF, and Chebyshev's Theorem",
             "Probability Distributions: Binomial, Poisson, Geometric, Hyper-geometric, Normal, Uniform, Gamma, and Beta",
@@ -648,9 +651,9 @@ const nitProfiles = {
             "Statistical Estimation: Point & Interval estimation of Mean/Variance, Maximum Likelihood Estimation (MLE)",
             "Hypothesis Testing: Tests concerning one/two Means, one/two Variances, and Proportions",
             "Categorical & Goodness-of-Fit Analysis: r x c Contingency Tables and Chi-square Goodness-of-Fit Test",
-            "Analysis of Variance (ANOVA): Completely Randomized and Randomized Block Designs",
+            "Analysis of Variance (ANOVA): Completely Randomized and Randomized Block Designs"
         ],
-        "Stochastic Processes": [], // Left empty intentionally
+        "Stochastic Processes": [],
         "Calculus": [
             "Single Variable Calculus: Mean Value Theorems & Taylor expansions",
             "Multivariable Calculus: Partial derivatives, Jacobians, Maxima & Minima",
@@ -674,40 +677,35 @@ const nitProfiles = {
             "Numerical Integration: Trapezoidal rule, Simpson's 1/3rd, and Simpson's 3/8th rules"
         ]
     }
-    
 };
 
-// 3.5 REFERENCE ASSESSMENT LOGIC
+// ==========================================================================
+// 3. REFERENCE ASSESSMENT LOGIC
+// ==========================================================================
 function evaluateBasketStatus(basketName, topicsArray) {
     const topicCount = topicsArray.length;
 
-    // Rule 1: Completely empty baskets mean missing prerequisites
     if (topicCount === 0) {
         return { text: "Weak Gap", class: "status-weak" };
     }
 
-    // Rule 2: Basket-specific evaluation based on depth of curriculum mapping
     switch (basketName) {
         case "Linear Algebra":
-            // Check if they covered advanced concepts like SVD
             const hasAdvancedLA = topicsArray.some(t => t.toLowerCase().includes("svd") || t.toLowerCase().includes("singular value"));
             if (hasAdvancedLA) return { text: "Strong", class: "status-strong" };
             return { text: "Manageable", class: "status-manageable" };
 
         case "Probability & Statistics":
-            // Check if they covered advanced inference matrices
             const hasInference = topicsArray.some(t => t.toLowerCase().includes("inference") || t.toLowerCase().includes("hypothesis"));
             if (hasInference && topicCount > 5) return { text: "Strong", class: "status-strong" };
             return { text: "Manageable", class: "status-manageable" };
 
         case "Calculus":
-            // Most NITs have extremely strong multivariable calculus setups
             if (topicCount > 6) return { text: "Strong", class: "status-strong" };
             return { text: "Manageable", class: "status-manageable" };
 
         case "Optimization":
         case "Stochastic Processes":
-            // If any topics ever get added here via electives
             if (topicCount > 2) return { text: "Strong", class: "status-strong" };
             return { text: "Manageable", class: "status-manageable" };
 
@@ -716,7 +714,9 @@ function evaluateBasketStatus(basketName, topicsArray) {
     }
 }
 
-// 3.7 SELF-STUDY RESOURCE MATRIX
+// ==========================================================================
+// 4. SELF-STUDY RESOURCE MATRIX
+// ==========================================================================
 const gapStudyResources = {
     "Linear Algebra": {
         topic: "Advanced Matrix Decompositions (SVD, LU, QR Factorization, Least Squares Approximations)",
@@ -736,7 +736,9 @@ const gapStudyResources = {
     }
 };
 
-// 4. UPDATED UI RENDERING ENGINE (With Dynamic Status Assessment)
+// ==========================================================================
+// 5. UPDATED UI RENDERING ENGINE (With Dynamic Status Assessment & Action Plan)
+// ==========================================================================
 function renderStudentBaskets(selectedCollegeKey) {
     const profile = nitProfiles[selectedCollegeKey];
     if (!profile) return;
@@ -750,6 +752,8 @@ function renderStudentBaskets(selectedCollegeKey) {
         "Non-IEOR": { listId: "non-ieor-list", headerId: "non-header" }
     };
 
+    let gapsFound = [];
+
     Object.keys(basketIds).forEach(basketName => {
         const targetIds = basketIds[basketName];
         const listContainer = document.getElementById(targetIds.listId);
@@ -759,15 +763,19 @@ function renderStudentBaskets(selectedCollegeKey) {
         listContainer.innerHTML = "";
 
         const topics = profile[basketName] || [];
-
-        // 1. Calculate and append the assessment tag (Except for Non-IEOR foundation)
+        
         if (headerContainer) {
-            // Strip old badges if they exist
             const oldBadge = headerContainer.querySelector('.status-badge');
             if (oldBadge) oldBadge.remove();
 
             if (basketName !== "Non-IEOR") {
                 const status = evaluateBasketStatus(basketName, topics);
+                
+                // Track gaps for the action plan
+                if (status.text === "Weak Gap" || status.text === "Manageable") {
+                    gapsFound.push({ name: basketName, severity: status.text });
+                }
+
                 const badgeSpan = document.createElement("span");
                 badgeSpan.className = `status-badge ${status.class}`;
                 badgeSpan.textContent = status.text;
@@ -775,7 +783,6 @@ function renderStudentBaskets(selectedCollegeKey) {
             }
         }
 
-        // 2. Render topic rows
         if (topics.length === 0) {
             listContainer.innerHTML = `
                 <div class="empty-basket-alert">
@@ -791,70 +798,59 @@ function renderStudentBaskets(selectedCollegeKey) {
             });
         }
     });
+
+    // Inject Adaptive Action Roadmaps
+    const actionPlanContainer = document.getElementById("action-plan-box");
+    if (actionPlanContainer) {
+        actionPlanContainer.innerHTML = "";
+        
+        if (gapsFound.length > 0) {
+            let htmlContent = `<h3>🎯 Personalized Prerequisite Action Plan</h3>`;
+            htmlContent += `<p class="plan-intro">Based on your curriculum, prioritize these self-study modules before starting your first semester at IIT Bombay:</p><div class="plan-grid">`;
+
+            gapsFound.forEach(gap => {
+                const resource = gapStudyResources[gap.name] || { topic: "General Core Foundations", recommendation: "Review standard foundational textbooks." };
+                htmlContent += `
+                    <div class="plan-item ${gap.severity === 'Weak Gap' ? 'plan-critical' : 'plan-warning'}">
+                        <h4>${gap.name} — <span class="severity-tag">${gap.severity}</span></h4>
+                        <p><strong>Core Focus:</strong> ${resource.topic}</p>
+                        <p class="resource-tip"><strong>Recommended Action:</strong> ${resource.recommendation}</p>
+                    </div>`;
+            });
+
+            htmlContent += `</div>`;
+            actionPlanContainer.innerHTML = htmlContent;
+            actionPlanContainer.style.display = "block";
+        } else {
+            actionPlanContainer.innerHTML = `
+                <div class="perfect-match-banner" style="display:flex; align-items:center; background:#eefaf2; color:#1d9d49; padding:20px; border-radius:12px; border:1px solid rgba(29,157,73,0.2);">
+                    <span style="font-size:1.5rem; margin-right:15px;">🎉</span>
+                    <p style="font-weight:500; font-size:0.95rem; margin:0;">Your background fully aligns with the default IITB IEOR core guidelines! No immediate prerequisite gaps detected.</p>
+                </div>`;
+            actionPlanContainer.style.display = "block";
+        }
+    }
 }
 
-// 5. EVENT LISTENERS (Optimized for Slide-In Grid Animation)
+// ==========================================================================
+// 6. EVENT LISTENERS
+// ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const collegeSelectElement = document.getElementById("college-selector");
     const basketsGridElement = document.getElementById("baskets-grid");
+    const actionPlanElement = document.getElementById("action-plan-box");
 
     if (collegeSelectElement && basketsGridElement) {
         collegeSelectElement.addEventListener("change", (event) => {
             const selectedValue = event.target.value;
 
-            // Step 1: Temporarily hide grid to trigger smooth transition reset
             basketsGridElement.classList.add("hidden");
+            if (actionPlanElement) actionPlanElement.style.display = "none";
 
             setTimeout(() => {
-                // Step 2: Render the updated database mapping array items
                 renderStudentBaskets(selectedValue);
-
-                // Step 3: Remove the hidden class to execute the clean 3D upward slide-in
                 basketsGridElement.classList.remove("hidden");
-            }, 250); // Small timeout allows smooth visual pacing
+            }, 250);
         });
     }
 });
-
-// Add this logic at the very bottom of your renderStudentBaskets function, right after the loop finishes.
-const actionPlanContainer = document.getElementById("action-plan-box");
-if (actionPlanContainer) {
-    actionPlanContainer.innerHTML = ""; // Clear baseline
-    let gapsFound = [];
-
-    // Check which domains have empty arrays or manageable flags
-    Object.keys(basketIds).forEach(basketName => {
-        if (basketName === "Non-IEOR") return;
-        const topics = profile[basketName] || [];
-        const status = evaluateBasketStatus(basketName, topics);
-
-        if (status.text === "Weak Gap" || status.text === "Manageable") {
-            gapsFound.push({ name: basketName, severity: status.text });
-        }
-    });
-
-    if (gapsFound.length > 0) {
-        let htmlContent = `<h3>🎯 Personalized Prerequisite Action Plan</h3>`;
-        htmlContent += `<p class="plan-intro">Based on your curriculum, prioritize these self-study modules before starting your first semester at IIT Bombay:</p><div class="plan-grid">`;
-
-        gapsFound.forEach(gap => {
-            const resource = gapStudyResources[gap.name] || { topic: "General Core Foundations", recommendation: "Review standard foundational textbooks." };
-            htmlContent += `
-                <div class="plan-item ${gap.severity === 'Weak Gap' ? 'plan-critical' : 'plan-warning'}">
-                    <h4>${gap.name} — <span class="severity-tag">${gap.severity}</span></h4>
-                    <p><strong>Core Focus:</strong> ${resource.topic}</p>
-                    <p class="resource-tip"><strong>Recommended Action:</strong> ${resource.recommendation}</p>
-                </div>`;
-        });
-
-        htmlContent += `</div>`;
-        actionPlanContainer.innerHTML = htmlContent;
-        actionPlanContainer.classList.remove("hidden");
-    } else {
-        actionPlanContainer.innerHTML = `
-            <div class="perfect-match-banner">
-                <span>🎉</span>
-                <p>Your background fully aligns with the default IITB IEOR core guidelines! No immediate prerequisite gaps detected.</p>
-            </div>`;
-    }
-}
