@@ -725,15 +725,25 @@ function renderStudentBaskets(selectedCollegeKey) {
     });
 }
 
-// 5. EVENT LISTENERS
+// 5. EVENT LISTENERS (Optimized for Slide-In Grid Animation)
 document.addEventListener("DOMContentLoaded", () => {
     const collegeSelectElement = document.getElementById("college-selector");
+    const basketsGridElement = document.getElementById("baskets-grid");
 
-    if (collegeSelectElement) {
+    if (collegeSelectElement && basketsGridElement) {
         collegeSelectElement.addEventListener("change", (event) => {
-            const selectedValue = event.target.value; // e.g., "nitc_mech" or "vnit_nagpur"
-            renderStudentBaskets(selectedValue);
+            const selectedValue = event.target.value;
+
+            // Step 1: Temporarily hide grid to trigger smooth transition reset
+            basketsGridElement.classList.add("hidden");
+
+            setTimeout(() => {
+                // Step 2: Render the updated database mapping array items
+                renderStudentBaskets(selectedValue);
+
+                // Step 3: Remove the hidden class to execute the clean 3D upward slide-in
+                basketsGridElement.classList.remove("hidden");
+            }, 250); // Small timeout allows smooth visual pacing
         });
     }
 });
-
