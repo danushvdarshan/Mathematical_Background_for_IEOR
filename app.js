@@ -833,36 +833,61 @@ function renderStudentBaskets(selectedCollegeKey) {
 }
 
 // ==========================================================================
-// 6. EVENT LISTENERS
+// 6 & 7. UNIFIED LIFECYCLE ENGINE & INTERACTIVITY
 // ==========================================================================
+
 document.addEventListener("DOMContentLoaded", () => {
-    const collegeSelectElement = document.getElementById("college-selector");
-    const basketsGridElement = document.getElementById("baskets-grid");
-    const actionPlanElement = document.getElementById("action-plan-box");
+    // 1. Core Element Selection
+    const collegeSelect = document.getElementById("college-selector");
+    const basketsGrid = document.getElementById("baskets-grid");
+    const actionPlanBox = document.getElementById("action-plan-box");
 
-    if (collegeSelectElement && basketsGridElement) {
-        collegeSelectElement.addEventListener("change", (event) => {
-            const selectedValue = event.target.value;
+    // 2. Initialize the Baseline Master Table immediately on boot
+    populateHomeCourseTable();
 
-            basketsGridElement.classList.add("hidden");
-            if (actionPlanElement) actionPlanElement.style.display = "none";
+    // 3. Handle Dropdown Transitions and Deep-Dive Population
+    if (collegeSelect && basketsGrid) {
+        collegeSelect.addEventListener("change", (event) => {
+            const selectedProgram = event.target.value;
+            const data = curriculumData[selectedProgram];
 
+            if (!data) return;
+
+            // Trigger smooth visual collapse state
+            basketsGrid.classList.add("hidden");
+            if (actionPlanBox) actionPlanBox.style.display = "none";
+
+            // Allow animation frame time to settle before revealing new data
             setTimeout(() => {
-                renderStudentBaskets(selectedValue);
-                basketsGridElement.classList.remove("hidden");
+                // Populate individual baskets dynamically
+                populateList("linear-algebra-list", data.la);
+                populateList("optimization-list", data.opt);
+                populateList("probability-stats-list", data.prob);
+                populateList("stochastic-list", data.stoch);
+                populateList("calculus-list", data.calc);
+                populateList("non-ieor-list", data.non);
+
+                // Build action plan bridging layout
+                if (actionPlanBox) {
+                    generateActionPlan(actionPlanBox, data.gaps);
+                    actionPlanBox.style.display = "block";
+                }
+
+                // Smoothly fade back in
+                basketsGrid.classList.remove("hidden");
             }, 250);
         });
     }
 });
 
-// ==========================================================================
-// 7. HOME TABLE VIEW INJECTION ENGINE
-// ==========================================================================
+// --- CORE ENGINE INJECTION POPULATORS ---
+
+// Populate the main 76-subject curriculum mapping comparison grid
 function populateHomeCourseTable() {
     const tableBody = document.getElementById("ieor-courses-table-body");
-    if (!tableBody) return; // Silent exit if not on home view page
+    if (!tableBody) return; // Silent exit if table container isn't present
     
-    tableBody.innerHTML = ""; // Wipe baseline mock placeholders
+    tableBody.innerHTML = ""; 
 
     Object.keys(ieorCourseMatrix).forEach(courseName => {
         const weights = ieorCourseMatrix[courseName];
@@ -881,9 +906,29 @@ function populateHomeCourseTable() {
     });
 }
 
-// Hook this into your existing DOMContentLoaded block so it fires on boot
-document.addEventListener("DOMContentLoaded", () => {
-    populateHomeCourseTable();
-});
+// Populate individual list structures with empty-state safety fallbacks
+function populateList(elementId, topics) {
+    const list = document.getElementById(elementId);
+    if (!list) return;
+    
+    if (!topics || topics.length === 0) {
+        list.innerHTML = `<li class="empty-notice">No explicit coverage found in source curriculum.</li>`;
+        return;
+    }
 
+    list.innerHTML = topics.map(topic => `<li>${topic}</li>`).join('');
+}
 
+// Generate structural strategy tags inside action plan panel
+function generateActionPlan(container, gaps) {
+    container.innerHTML = `
+        <h2>Self-Study Bridging Strategy &amp; Action Plan</h2>
+        <p class="plan-intro">To align perfectly with the target IIT Bombay IEOR prerequisites, the candidate must bridge the following curriculum deficiencies:</p>
+        <div class="gap-tags-container">
+            ${gaps.map(gap => `<span class="gap-tag">${gap}</span>`).join('')}
+        </div>
+        <div class="action-footer-note">
+            <strong>Recommended Priority:</strong> Focus on missing <em>Optimization</em> and <em>Stochastic</em> foundations prior to Semester 1 registration.
+        </div>
+    `;
+}
