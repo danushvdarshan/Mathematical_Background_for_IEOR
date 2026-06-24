@@ -26,15 +26,106 @@
                 <table class="percentage-table">
                     <thead>
                         <tr>
-                            <th>NIT Institute & Program</th>
+                            <th>NIT Institute &amp; Program</th>
                             <th>Linear Algebra</th>
                             <th>Optimization</th>
-                            <th>Probability & Stats</th>
+                            <th>Probability &amp; Stats</th>
                             <th>Stochastic</th>
                             <th>Calculus</th>
                             <th>Overall Match</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>NIT Calicut (Eng. Physics)</strong></td>
+                            <td>100%</td>
+                            <td>0%</td>
+                            <td>85%</td>
+                            <td>0%</td>
+                            <td>80%</td>
+                            <td class="high-match">53%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NIT Calicut (Mechanical)</strong></td>
+                            <td>75%</td>
+                            <td>0%</td>
+                            <td>95%</td>
+                            <td>0%</td>
+                            <td>100%</td>
+                            <td class="high-match">54%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SVNIT Surat (Core First Year)</strong></td>
+                            <td>50%</td>
+                            <td>0%</td>
+                            <td>50%</td>
+                            <td>0%</td>
+                            <td>70%</td>
+                            <td class="mid-match">34%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>VNIT Nagpur (MME Sequence)</strong></td>
+                            <td>50%</td>
+                            <td>0%</td>
+                            <td>40%</td>
+                            <td>0%</td>
+                            <td>85%</td>
+                            <td class="mid-match">35%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="control-panel">
+            <label for="college-selector" class="control-label">Select Target Curriculum for Deep-Dive Analysis:</label>
+            <select id="college-selector" class="premium-dropdown">
+                <option value="" disabled selected>Choose an NIT Program...</option>
+                <option value="nitc_eng_phys">NIT Calicut - Engineering Physics</option>
+                <option value="nitc_mech">NIT Calicut - Mechanical Engineering</option>
+                <option value="svnit_surat">SVNIT Surat - Engineering Mathematics Track</option>
+                <option value="vnit_nagpur">VNIT Nagpur - Metallurgical &amp; Materials Math</option>
+            </select>
+        </section>
+
+        <section id="baskets-grid" class="baskets-grid hidden">
+            
+            <div class="basket-card">
+                <div id="la-header" class="basket-header color-la">Linear Algebra </div>
+                <ul id="linear-algebra-list" class="topic-list"></ul>
+            </div>
+
+            <div class="basket-card">
+                <div id="opt-header" class="basket-header color-opt">Optimization </div>
+                <ul id="optimization-list" class="topic-list"></ul>
+            </div>
+
+            <div class="basket-card">
+                <div id="prob-header" class="basket-header color-prob">Probability &amp; Statistics </div>
+                <ul id="probability-stats-list" class="topic-list"></ul>
+            </div>
+
+            <div class="basket-card">
+                <div id="stoch-header" class="basket-header color-stoch">Stochastic Processes </div>
+                <ul id="stochastic-list" class="topic-list"></ul>
+            </div>
+
+            <div class="basket-card">
+                <div id="calc-header" class="basket-header color-calc">Calculus &amp; Differential Eq. </div>
+                <ul id="calculus-list" class="topic-list"></ul>
+            </div>
+
+            <div class="basket-card">
+                <div id="non-header" class="basket-header color-non">Non-IEOR Foundation Math </div>
+                <ul id="non-ieor-list" class="topic-list"></ul>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>                    </thead>
                     <tbody>
                         <tr>
                             <td><strong>NIT Calicut (Eng. Physics)</strong></td>
