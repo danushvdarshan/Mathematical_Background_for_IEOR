@@ -716,6 +716,25 @@ function evaluateBasketStatus(basketName, topicsArray) {
     }
 }
 
+// 3.7 SELF-STUDY RESOURCE MATRIX
+const gapStudyResources = {
+    "Linear Algebra": {
+        topic: "Advanced Matrix Decompositions (SVD, LU, QR Factorization, Least Squares Approximations)",
+        recommendation: "Watch Gilbert Strang's Linear Algebra lectures (MIT OCW) or review 'Introduction to Linear Algebra' Chapters 6 & 7."
+    },
+    "Optimization": {
+        topic: "Linear Programming, Simplex Method, Duality, and KKT Conditions",
+        recommendation: "Refer to NPTEL's 'Numerical Optimization' series or read 'Linear and Nonlinear Programming' by Luenberger."
+    },
+    "Probability & Statistics": {
+        topic: "Statistical Inference, Maximum Likelihood Estimation (MLE), Hypothesis Testing (Z, t, Chi-Square)",
+        recommendation: "Review Harvard STAT 110 resources or NPTEL's 'Statistical Inference' by IIT Kharagpur."
+    },
+    "Stochastic Processes": {
+        topic: "Markov Chains, Poisson Processes, and Transition Matrices",
+        recommendation: "Study MIT 6.041 Probabilistic Systems Analysis or Sheldon Ross's 'Introduction to Probability Models'."
+    }
+};
 
 // 4. UPDATED UI RENDERING ENGINE (With Dynamic Status Assessment)
 function renderStudentBaskets(selectedCollegeKey) {
@@ -796,3 +815,46 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+// Add this logic at the very bottom of your renderStudentBaskets function, right after the loop finishes.
+const actionPlanContainer = document.getElementById("action-plan-box");
+if (actionPlanContainer) {
+    actionPlanContainer.innerHTML = ""; // Clear baseline
+    let gapsFound = [];
+
+    // Check which domains have empty arrays or manageable flags
+    Object.keys(basketIds).forEach(basketName => {
+        if (basketName === "Non-IEOR") return;
+        const topics = profile[basketName] || [];
+        const status = evaluateBasketStatus(basketName, topics);
+
+        if (status.text === "Weak Gap" || status.text === "Manageable") {
+            gapsFound.push({ name: basketName, severity: status.text });
+        }
+    });
+
+    if (gapsFound.length > 0) {
+        let htmlContent = `<h3>🎯 Personalized Prerequisite Action Plan</h3>`;
+        htmlContent += `<p class="plan-intro">Based on your curriculum, prioritize these self-study modules before starting your first semester at IIT Bombay:</p><div class="plan-grid">`;
+
+        gapsFound.forEach(gap => {
+            const resource = gapStudyResources[gap.name] || { topic: "General Core Foundations", recommendation: "Review standard foundational textbooks." };
+            htmlContent += `
+                <div class="plan-item ${gap.severity === 'Weak Gap' ? 'plan-critical' : 'plan-warning'}">
+                    <h4>${gap.name} — <span class="severity-tag">${gap.severity}</span></h4>
+                    <p><strong>Core Focus:</strong> ${resource.topic}</p>
+                    <p class="resource-tip"><strong>Recommended Action:</strong> ${resource.recommendation}</p>
+                </div>`;
+        });
+
+        htmlContent += `</div>`;
+        actionPlanContainer.innerHTML = htmlContent;
+        actionPlanContainer.classList.remove("hidden");
+    } else {
+        actionPlanContainer.innerHTML = `
+            <div class="perfect-match-banner">
+                <span>🎉</span>
+                <p>Your background fully aligns with the default IITB IEOR core guidelines! No immediate prerequisite gaps detected.</p>
+            </div>`;
+    }
+}
