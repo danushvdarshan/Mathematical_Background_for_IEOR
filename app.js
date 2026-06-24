@@ -545,12 +545,16 @@ function renderStudentBaskets(selectedCollegeKey) {
 // 6 & 7. UNIFIED LIFECYCLE ENGINE & INTERACTIVITY
 // ==========================================================================
 
+// ==========================================================================
+// 6 & 7. UNIFIED LIFECYCLE ENGINE & INTERACTIVITY (WITH PRIORITY BADGES)
+// ==========================================================================
+
 document.addEventListener("DOMContentLoaded", () => {
     const collegeSelect = document.getElementById("college-selector");
     const basketsGrid = document.getElementById("baskets-grid");
     const actionPlanBox = document.getElementById("action-plan-box");
 
-    // 1. Initialize the massive 76-subject table immediately on window paint
+    // 1. Initialize the filtered mathematical table immediately on window paint
     populateHomeCourseTable();
 
     // 2. Handle Dropdown Transitions and Deep-Dive Population smoothly
@@ -586,7 +590,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // --- CORE ENGINE INJECTIONS & FILTERS ---
 
-// Populate the filtered 57-subject mathematical curriculum mapping comparison grid
+// Populate the filtered mathematical curriculum mapping comparison grid
 function populateHomeCourseTable() {
     const tableBody = document.getElementById("ieor-courses-table-body");
     if (!tableBody) return; 
@@ -598,7 +602,7 @@ function populateHomeCourseTable() {
         const row = document.createElement("tr");
         row.className = "course-matrix-row";
         
-        // Define clean visual styling hook matches for our future-proof priorities
+        // Match clean visual style tags for our future-proof priorities
         let priorityClass = "tag-default";
         if (data.priority.includes("Highly Vital")) priorityClass = "tag-vital";
         if (data.priority.includes("Foundational")) priorityClass = "tag-foundational";
@@ -621,7 +625,7 @@ function populateHomeCourseTable() {
     });
 }
 
-// Live interactive keyword search across all 76 rows
+// Live interactive keyword search across all rows
 function filterMasterTable() {
     const input = document.getElementById("matrix-search");
     const filter = input.value.toUpperCase();
