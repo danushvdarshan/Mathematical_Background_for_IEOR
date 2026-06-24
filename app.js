@@ -446,7 +446,7 @@ const gapStudyResources = {
 };
 
 // ==========================================================================
-// 5. UPDATED UI RENDERING ENGINE (With Dynamic Status Assessment & Action Plan)
+// 5. UPDATED UI RENDERING ENGINE (With Dynamic Status Assessment)
 // ==========================================================================
 function renderStudentBaskets(selectedCollegeKey) {
     const profile = nitProfiles[selectedCollegeKey];
@@ -460,8 +460,6 @@ function renderStudentBaskets(selectedCollegeKey) {
         "Calculus": { listId: "calculus-list", headerId: "calc-header" },
         "Non-IEOR": { listId: "non-ieor-list", headerId: "non-header" }
     };
-
-    let gapsFound = [];
 
     Object.keys(basketIds).forEach(basketName => {
         const targetIds = basketIds[basketName];
@@ -479,12 +477,6 @@ function renderStudentBaskets(selectedCollegeKey) {
 
             if (basketName !== "Non-IEOR") {
                 const status = evaluateBasketStatus(basketName, topics);
-                
-                // Track gaps for the action plan
-                if (status.text === "Weak Gap" || status.text === "Manageable") {
-                    gapsFound.push({ name: basketName, severity: status.text });
-                }
-
                 const badgeSpan = document.createElement("span");
                 badgeSpan.className = `status-badge ${status.class}`;
                 badgeSpan.textContent = status.text;
@@ -507,38 +499,6 @@ function renderStudentBaskets(selectedCollegeKey) {
             });
         }
     });
-
-    // Inject Adaptive Action Roadmaps
-    const actionPlanContainer = document.getElementById("action-plan-box");
-    if (actionPlanContainer) {
-        actionPlanContainer.innerHTML = "";
-        
-        if (gapsFound.length > 0) {
-            let htmlContent = `<h3>🎯 Personalized Prerequisite Action Plan</h3>`;
-            htmlContent += `<p class="plan-intro">Based on your curriculum, prioritize these self-study modules before starting your first semester at IIT Bombay:</p><div class="plan-grid">`;
-
-            gapsFound.forEach(gap => {
-                const resource = gapStudyResources[gap.name] || { topic: "General Core Foundations", recommendation: "Review standard foundational textbooks." };
-                htmlContent += `
-                    <div class="plan-item ${gap.severity === 'Weak Gap' ? 'plan-critical' : 'plan-warning'}">
-                        <h4>${gap.name} — <span class="severity-tag">${gap.severity}</span></h4>
-                        <p><strong>Core Focus:</strong> ${resource.topic}</p>
-                        <p class="resource-tip"><strong>Recommended Action:</strong> ${resource.recommendation}</p>
-                    </div>`;
-            });
-
-            htmlContent += `</div>`;
-            actionPlanContainer.innerHTML = htmlContent;
-            actionPlanContainer.style.display = "block";
-        } else {
-            actionPlanContainer.innerHTML = `
-                <div class="perfect-match-banner" style="display:flex; align-items:center; background:#eefaf2; color:#1d9d49; padding:20px; border-radius:12px; border:1px solid rgba(29,157,73,0.2);">
-                    <span style="font-size:1.5rem; margin-right:15px;">🎉</span>
-                    <p style="font-weight:500; font-size:0.95rem; margin:0;">Your background fully aligns with the default IITB IEOR core guidelines! No immediate prerequisite gaps detected.</p>
-                </div>`;
-            actionPlanContainer.style.display = "block";
-        }
-    }
 }
 
 // ==========================================================================
@@ -558,6 +518,7 @@ document.addEventListener("DOMContentLoaded", () => {
         collegeSelect.addEventListener("change", (event) => {
             const selectedProgram = event.target.value;
 
+            // FIX: Using the correct dataset variable 'nitProfiles'
             if (!nitProfiles[selectedProgram]) return;
 
             // Transition fade out sequence
@@ -576,7 +537,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 basketsGrid.classList.add("visible");
                 
                 if (actionPlanBox) {
-                    // ---> INJECT DETAILED MINI-BOXES HERE <---
+                    // Inject the 3-Box Detailed Remediation UI
                     generateDetailedActionPlan(actionPlanBox);
                     
                     actionPlanBox.style.display = "block";
@@ -601,9 +562,9 @@ function populateHomeCourseTable() {
         const row = document.createElement("tr");
         row.className = "course-matrix-row";
         
-        // Match clean visual style tags for our future-proof priorities
+        // Safety fallback just in case some courses don't have priority tags yet
         let priorityClass = "tag-default";
-        const pLabel = data.Priority || data.priority || "Standard"; // Fallback for safety
+        const pLabel = data.priority || data.Priority || "Standard"; 
 
         if (pLabel.includes("Vital")) priorityClass = "tag-vital";
         if (pLabel.includes("Foundational")) priorityClass = "tag-foundational";
@@ -629,21 +590,14 @@ function populateHomeCourseTable() {
 // Variable to track the active market trend priority pill state
 let currentPriorityFilter = "ALL";
 
-// Advanced Priority Tab Filter Control Function
 function applyPriorityFilter(priorityKeyword, element) {
-    // Toggle class highlight markers on filter buttons
     const pills = document.querySelectorAll('.filter-pill');
     pills.forEach(pill => pill.classList.remove('active'));
     element.classList.add('active');
-
-    // Update global state tracking context
     currentPriorityFilter = priorityKeyword.toUpperCase();
-    
-    // Execute global filter evaluation pipeline
     filterMasterTable();
 }
 
-// Unified Omni-Filter Engine (Combines text string and active category pill states)
 function filterMasterTable() {
     const searchInput = document.getElementById("matrix-search");
     const textFilter = searchInput ? searchInput.value.toUpperCase() : "";
@@ -655,14 +609,10 @@ function filterMasterTable() {
     for (let i = 0; i < tr.length; i++) {
         const titleCell = tr[i].getElementsByClassName("course-title-cell")[0];
         if (titleCell) {
-            // Read title and priority badge content strings
             const txtValue = titleCell.textContent || titleCell.innerText;
             const upperText = txtValue.toUpperCase();
-
-            // Evaluate text query presence
             const matchesSearch = upperText.indexOf(textFilter) > -1;
             
-            // Evaluate structural market-priority matching constraints
             let matchesPriority = false;
             if (currentPriorityFilter === "ALL") {
                 matchesPriority = true;
@@ -670,7 +620,6 @@ function filterMasterTable() {
                 matchesPriority = true;
             }
 
-            // Cross-evaluate match criteria
             if (matchesSearch && matchesPriority) {
                 tr[i].style.display = "";
             } else {
@@ -680,11 +629,9 @@ function filterMasterTable() {
     }
 }
 
-// Robust layout expansion handler with safety fallback states
 function toggleDepthDetail(elementId) {
     const target = document.getElementById(elementId);
     if (!target) return;
-
     if (target.style.display === "none" || target.style.display === "") {
         target.style.display = "block";
     } else {
