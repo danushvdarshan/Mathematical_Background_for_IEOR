@@ -526,6 +526,8 @@ function generateDetailedActionPlan(gapsFound) {
     const gridContainer = document.getElementById("action-plan-grid");
     const footer = document.getElementById("action-footer");
     if (!gridContainer) return;
+    // ADD THIS LINE: Un-hide the box so it actually shows up!
+    gridContainer.style.display = "block"; 
 
     gridContainer.innerHTML = ""; // Clear old boxes
 
