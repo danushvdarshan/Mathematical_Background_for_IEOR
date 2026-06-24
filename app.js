@@ -445,8 +445,8 @@ const gapStudyResources = {
     }
 };
 
-// ==========================================================================
-// 5. UPDATED UI RENDERING ENGINE (With Dynamic Status Assessment)
+/// ==========================================================================
+// 5. UPDATED UI RENDERING ENGINE (With Basket Colors)
 // ==========================================================================
 function renderStudentBaskets(selectedCollegeKey) {
     const profile = nitProfiles[selectedCollegeKey];
@@ -461,33 +461,48 @@ function renderStudentBaskets(selectedCollegeKey) {
         "Non-IEOR": { listId: "non-ieor-list", headerId: "non-header" }
     };
 
+    let gapsFound = [];
+
     Object.keys(basketIds).forEach(basketName => {
         const targetIds = basketIds[basketName];
         const listContainer = document.getElementById(targetIds.listId);
         const headerContainer = document.getElementById(targetIds.headerId);
         
-        if (!listContainer) return;
-        listContainer.innerHTML = "";
-
-        const topics = profile[basketName] || [];
+        if (!listContainer || !headerContainer) return;
         
-        if (headerContainer) {
-            const oldBadge = headerContainer.querySelector('.status-badge');
-            if (oldBadge) oldBadge.remove();
+        listContainer.innerHTML = "";
+        const topics = profile[basketName] || [];
+        const cardElement = headerContainer.parentElement; // The overall Basket Card
+        
+        // Remove old background colors
+        cardElement.classList.remove('basket-bg-strong', 'basket-bg-manageable', 'basket-bg-weak');
+        
+        const oldBadge = headerContainer.querySelector('.status-badge');
+        if (oldBadge) oldBadge.remove();
 
-            if (basketName !== "Non-IEOR") {
-                const status = evaluateBasketStatus(basketName, topics);
-                const badgeSpan = document.createElement("span");
-                badgeSpan.className = `status-badge ${status.class}`;
-                badgeSpan.textContent = status.text;
-                headerContainer.appendChild(badgeSpan);
+        if (basketName !== "Non-IEOR") {
+            const status = evaluateBasketStatus(basketName, topics);
+            
+            // Track gaps for the remediation mini-boxes
+            if (status.text === "Weak Gap" || status.text === "Manageable") {
+                gapsFound.push({ name: basketName, severity: status.text });
             }
+
+            // Apply dynamic background color to the basket
+            if (status.text === "Strong") cardElement.classList.add('basket-bg-strong');
+            else if (status.text === "Manageable") cardElement.classList.add('basket-bg-manageable');
+            else cardElement.classList.add('basket-bg-weak');
+
+            const badgeSpan = document.createElement("span");
+            badgeSpan.className = `status-badge ${status.class}`;
+            badgeSpan.textContent = status.text;
+            headerContainer.appendChild(badgeSpan);
         }
 
         if (topics.length === 0) {
             listContainer.innerHTML = `
                 <div class="empty-basket-alert">
-                    <span class="warning-icon">⚠️</span>
+                    <span class="warning-icon"></span>
                     <p class="gap-text">Critical domain vacancy. Target self-study modules before course registration.</p>
                 </div>`;
         } else {
@@ -499,49 +514,82 @@ function renderStudentBaskets(selectedCollegeKey) {
             });
         }
     });
+
+    // Fire the Remediation Box Generator
+    generateDetailedActionPlan(gapsFound);
 }
 
 // ==========================================================================
-// 6 & 7. UNIFIED LIFECYCLE ENGINE & INTERACTIVITY (WITH PRIORITY BADGES)
+// TARGETED SELF-STUDY ACTION PLAN GENERATOR (Side-by-Side Mini Boxes)
+// ==========================================================================
+function generateDetailedActionPlan(gapsFound) {
+    const gridContainer = document.getElementById("action-plan-grid");
+    const footer = document.getElementById("action-footer");
+    if (!gridContainer) return;
+
+    gridContainer.innerHTML = ""; // Clear old boxes
+
+    if (gapsFound.length > 0) {
+        gapsFound.forEach(gap => {
+            const resource = gapStudyResources[gap.name] || { topic: "Foundational theory", recommendation: "Review primary mathematical definitions." };
+            const isCritical = gap.severity === 'Weak Gap';
+            
+            // Create independent card for each gap
+            const boxHtml = `
+                <div class="plan-item ${isCritical ? 'plan-critical' : 'plan-warning'}">
+                    <h4>${gap.name} <span class="severity-tag">${gap.severity}</span></h4>
+                    <p style="margin-bottom:15px; color:#424245; font-size:0.95rem;"><strong>Core Focus:</strong> ${resource.topic}</p>
+                    <div class="resource-tip">
+                        <strong>${isCritical ? '📚' : '📺'} Remedy:</strong> ${resource.recommendation}
+                    </div>
+                </div>
+            `;
+            gridContainer.innerHTML += boxHtml;
+        });
+        if (footer) footer.style.display = "block";
+    } else {
+        gridContainer.innerHTML = `
+            <div style="background:#eefaf2; color:#1d9d49; padding:20px; border-radius:12px; width:100%; grid-column: 1 / -1;">
+                Your background fully aligns with the IITB IEOR core guidelines! No gaps detected.
+            </div>`;
+        if (footer) footer.style.display = "none";
+    }
+}
+
+// ==========================================================================
+// 6 & 7. UNIFIED LIFECYCLE ENGINE & INTERACTIVITY
 // ==========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
     const collegeSelect = document.getElementById("college-selector");
     const basketsGrid = document.getElementById("baskets-grid");
-    const actionPlanBox = document.getElementById("action-plan-box");
+    const actionPlanWrapper = document.getElementById("action-plan-wrapper");
 
-    // 1. Initialize the filtered mathematical table immediately on window paint
     populateHomeCourseTable();
 
-    // 2. Handle Dropdown Transitions and Deep-Dive Population smoothly
     if (collegeSelect && basketsGrid) {
         collegeSelect.addEventListener("change", (event) => {
             const selectedProgram = event.target.value;
 
-            // FIX: Using the correct dataset variable 'nitProfiles'
             if (!nitProfiles[selectedProgram]) return;
 
-            // Transition fade out sequence
+            // Transition fade out
             basketsGrid.classList.remove("visible");
-            if (actionPlanBox) {
-                actionPlanBox.classList.remove("visible");
-                setTimeout(() => { actionPlanBox.style.display = "none"; }, 250);
+            if (actionPlanWrapper) {
+                actionPlanWrapper.classList.remove("visible");
+                setTimeout(() => { actionPlanWrapper.style.display = "none"; }, 250);
             }
 
-            // Let animation ease out before swapping data frames
+            // Swap data and fade in
             setTimeout(() => {
                 renderStudentBaskets(selectedProgram);
 
-                // Reveal dynamically with smooth ease-in animation
                 basketsGrid.classList.remove("hidden");
                 basketsGrid.classList.add("visible");
                 
-                if (actionPlanBox) {
-                    // Inject the 3-Box Detailed Remediation UI
-                    generateDetailedActionPlan(actionPlanBox);
-                    
-                    actionPlanBox.style.display = "block";
-                    setTimeout(() => { actionPlanBox.classList.add("visible"); }, 50);
+                if (actionPlanWrapper) {
+                    actionPlanWrapper.style.display = "block";
+                    setTimeout(() => { actionPlanWrapper.classList.add("visible"); }, 50);
                 }
             }, 300);
         });
@@ -637,46 +685,4 @@ function toggleDepthDetail(elementId) {
     } else {
         target.style.display = "none";
     }
-}
-
-// ==========================================================================
-// TARGETED SELF-STUDY ACTION PLAN GENERATOR (THE MINI BOXES)
-// ==========================================================================
-function generateDetailedActionPlan(container) {
-    if (!container) return;
-
-    container.innerHTML = `
-        <h2>🚀 Personalized Remediation Strategy</h2>
-        <p class="plan-intro">Based on your specific curriculum overlap, focus on these targeted study areas prior to IIT Bombay Semester 1 registration:</p>
-        
-        <div class="plan-grid">
-            <div class="plan-item plan-critical">
-                <h4>Stochastic Processes <span class="severity-tag">Weak Gap</span></h4>
-                <p>Your undergraduate track lacks formal exposure to Markov Chains, Queuing Theory, and advanced probability models.</p>
-                <div class="resource-tip">
-                    <strong>📚 Remedy:</strong> Study Sheldon Ross <em>"Stochastic Processes"</em> or MIT OCW 6.262.
-                </div>
-            </div>
-
-            <div class="plan-item plan-warning">
-                <h4>Advanced Optimization <span class="severity-tag">Manageable</span></h4>
-                <p>You have baseline engineering optimization, but IEOR requires deep mathematical proofs (KKT Conditions, Simplex).</p>
-                <div class="resource-tip">
-                    <strong>📺 Remedy:</strong> Review Stephen Boyd's <em>Convex Optimization</em> (Stanford YouTube).
-                </div>
-            </div>
-
-            <div class="plan-item" style="border-left: 4px solid #48bb78;">
-                <h4>Calculus &amp; Lin. Algebra <span class="severity-tag" style="background: #f0fff4; color: #276749; border: 1px solid #9ae6b4;">Strong Foundation</span></h4>
-                <p>Your engineering background provides a rigorous base in ODEs/PDEs, Taylor series, and Matrix theory.</p>
-                <div class="resource-tip">
-                    <strong>✅ Remedy:</strong> Light refresher on Eigen decomposition and Multivariable Jacobians.
-                </div>
-            </div>
-        </div>
-
-        <div class="action-footer-note">
-            <strong>Advisor Note:</strong> Do not attempt to bridge everything simultaneously. Prioritize clearing your <strong style="color: #c53030;">Weak Gaps</strong> first to prevent immediate burnout during coursework.
-        </div>
-    `;
 }
