@@ -854,3 +854,36 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+// ==========================================================================
+// 7. HOME TABLE VIEW INJECTION ENGINE
+// ==========================================================================
+function populateHomeCourseTable() {
+    const tableBody = document.getElementById("ieor-courses-table-body");
+    if (!tableBody) return; // Silent exit if not on home view page
+    
+    tableBody.innerHTML = ""; // Wipe baseline mock placeholders
+
+    Object.keys(ieorCourseMatrix).forEach(courseName => {
+        const weights = ieorCourseMatrix[courseName];
+        const row = document.createElement("tr");
+        row.className = "course-matrix-row";
+        
+        row.innerHTML = `
+            <td class="course-title-cell">${courseName}</td>
+            <td class="weight-cell text-center">${weights["Linear Algebra"]}%</td>
+            <td class="weight-cell text-center">${weights["Optimization"]}%</td>
+            <td class="weight-cell text-center">${weights["Probability & Statistics"]}%</td>
+            <td class="weight-cell text-center">${weights["Stochastic Processes"]}%</td>
+            <td class="weight-cell text-center">${weights["Calculus"]}%</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Hook this into your existing DOMContentLoaded block so it fires on boot
+document.addEventListener("DOMContentLoaded", () => {
+    populateHomeCourseTable();
+});
+
+
