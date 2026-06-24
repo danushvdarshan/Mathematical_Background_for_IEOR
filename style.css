@@ -559,3 +559,95 @@ body {
     color: #a0aec0;
     border: 1px solid rgba(160, 174, 192, 0.3);
 }
+
+/* Ensure Course Names & Headings Stand Out Boldly */
+.course-name-text {
+    font-size: 1.05rem;
+    font-weight: 700 !important;
+    color: #ffffff !important; /* Forces high-contrast white text */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Fix for the Top 5 Baskets Readability */
+.basket-card h3, 
+#baskets-grid h3,
+[id$="-header"] {
+    color: #f7fafc !important;
+    font-weight: 800 !important;
+    font-size: 1.2rem;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Fix for Invisible Topics under Baskets */
+.syllabus-topic-item,
+#baskets-grid li,
+.empty-notice {
+    color: #cbd5e0 !important; /* High contrast light grey/silver */
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+    margin-bottom: 0.4rem;
+}
+
+/* Premium Filter Controls Row */
+.filter-control-panel {
+    background: #1a202c;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.search-input-wrapper {
+    flex: 1;
+    min-width: 280px;
+    position: relative;
+}
+
+.search-input-wrapper input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: #2d3748;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+/* Premium Priority Filter Pills */
+.filter-pills-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-pill {
+    padding: 0.5rem 1rem;
+    background: #2d3748;
+    color: #a0aec0;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+    background: #4a5568;
+    color: #fff;
+}
+
+.filter-pill.active {
+    background: #3182ce;
+    color: #fff;
+    border-color: #63b3ed;
+    box-shadow: 0 0 10px rgba(49, 130, 206, 0.4);
+}
