@@ -2,15 +2,16 @@
    GLOBAL APPLE-INSPIRED PREMIUM LIGHT STYLING
    ========================================================================== */
 :root {
-    --bg-white: #ffffff;
-    --card-bg: rgba(255, 255, 255, 0.75);
-    --text-primary: #1d1d1f;
-    --text-muted: #86868b;
+    --bg-white: #f5f5f7; /* Apple ultra-light grey surface background */
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --text-primary: #1d1d1f; /* Premium Apple off-black */
+    --text-secondary: #424245;
+    --text-muted: #86868b; /* Apple standard muted grey */
     --border-color: rgba(0, 0, 0, 0.08);
     --lavender-primary: #8e8ffa;
     --lavender-glow: #c2c3ff;
-    --lavender-dark: #6465c1;
-    --gap-warning: #ff7b7b;
+    --lavender-dark: #4f50a3;
+    --gap-warning: #e53e3e;
 }
 
 * {
@@ -42,12 +43,11 @@ body {
     pointer-events: none;
 }
 
-/* Overlapping smooth volumetric fluid shapes imitating abstract wallpapers */
 .fluid-ribbon {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.45;
+    filter: blur(90px);
+    opacity: 0.35;
     mix-blend-mode: multiply;
     animation: fluidWave 22s infinite alternate ease-in-out;
 }
@@ -55,7 +55,7 @@ body {
 .ribbon-1 {
     width: 700px;
     height: 400px;
-    background: linear-gradient(135deg, var(--lavender-primary), #d2b7ff);
+    background: linear-gradient(135deg, var(--lavender-primary), #e1d3ff);
     top: -10%;
     right: -10%;
 }
@@ -63,7 +63,7 @@ body {
 .ribbon-2 {
     width: 600px;
     height: 600px;
-    background: linear-gradient(45deg, var(--lavender-glow), var(--lavender-dark));
+    background: linear-gradient(45deg, var(--lavender-glow), #d2b7ff);
     bottom: -15%;
     left: -10%;
     animation-duration: 30s;
@@ -73,7 +73,7 @@ body {
 .ribbon-3 {
     width: 450px;
     height: 300px;
-    background: linear-gradient(90deg, #e1d3ff, var(--lavender-primary));
+    background: linear-gradient(90deg, #f0ebff, var(--lavender-primary));
     top: 40%;
     left: 20%;
     animation-duration: 25s;
@@ -82,12 +82,12 @@ body {
 
 @keyframes fluidWave {
     0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-    50% { transform: translate(80px, 40px) rotate(90deg) scale(1.15); }
-    100% { transform: translate(-40px, 90px) rotate(180deg) scale(0.95); }
+    50% { transform: translate(60px, 30px) rotate(90deg) scale(1.1); }
+    100% { transform: translate(-30px, 60px) rotate(180deg) scale(0.95); }
 }
 
 /* ==========================================================================
-   APP APP LAYOUT FRAMEWORK
+   APP FRAMEWORK LAYOUT
    ========================================================================== */
 .app-container {
     position: relative;
@@ -103,33 +103,37 @@ body {
 }
 
 .app-header h1 {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     font-weight: 700;
     letter-spacing: -0.5px;
+    color: var(--text-primary);
     margin-bottom: 8px;
 }
 
 .app-header .subtitle {
     color: var(--text-muted);
     font-size: 1.1rem;
+    font-weight: 400;
 }
 
-/* Premium Card Structural Baseline */
+/* Premium Light Mode Glassmorphism Card Baseline */
 .dashboard-card {
     background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border-color);
-    border-radius: 18px;
-    padding: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
     margin-bottom: 30px;
 }
 
 .dashboard-card h2 {
-    font-size: 1.4rem;
+    font-size: 1.45rem;
+    color: var(--text-primary);
     margin-bottom: 20px;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: -0.2px;
 }
 
 /* ==========================================================================
@@ -137,38 +141,59 @@ body {
    ========================================================================== */
 .table-wrapper {
     overflow-x: auto;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
 }
 
-.percentage-table {
+.percentage-matrix {
+    border-collapse: separate;
+    border-spacing: 0;
     width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    font-size: 0.95rem;
 }
 
-.percentage-table th, .percentage-table td {
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.percentage-table th {
-    background-color: rgba(0, 0, 0, 0.02);
+.percentage-matrix th {
+    background-color: #fafafa;
     color: var(--text-muted);
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 0.5px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.percentage-table tr:hover {
-    background-color: rgba(0, 0, 0, 0.01);
+.percentage-matrix td {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    background: #ffffff;
 }
 
-.high-match { color: #1d9d49; font-weight: 600; }
-.mid-match { color: #cc7a00; font-weight: 600; }
+.percentage-matrix tr:last-child td {
+    border-bottom: none;
+}
+
+.percentage-matrix tr {
+    transition: background 0.2s ease;
+}
+
+.percentage-matrix tr:hover td {
+    background: #fdfdfd;
+}
+
+.weight-cell {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.text-center {
+    text-align: center;
+}
 
 /* ==========================================================================
-   CONTROL FILTER INTERFACE
+   CONTROL FILTER INTERFACE (LIGHT CONTEXT)
    ========================================================================== */
 .control-panel {
     display: flex;
@@ -178,10 +203,10 @@ body {
 }
 
 .control-label {
-    font-size: 1rem;
-    color: var(--text-muted);
-    margin-bottom: 12px;
-    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    font-weight: 600;
 }
 
 .premium-dropdown {
@@ -191,418 +216,32 @@ body {
     font-size: 1rem;
     border-radius: 12px;
     border: 1px solid var(--border-color);
-    background: rgba(255, 255, 255, 0.9);
+    background: #ffffff;
+    color: var(--text-primary);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
     outline: none;
     cursor: pointer;
+    font-weight: 500;
     transition: all 0.2s ease-in-out;
 }
 
 .premium-dropdown:focus {
     border-color: var(--lavender-primary);
-    box-shadow: 0 0 0 4px var(--lavender-glow);
+    box-shadow: 0 0 0 4px rgba(142, 143, 250, 0.15);
 }
 
-/* ==========================================================================
-   DYNAMIC SLIDING 6-BASKETS SYSTEM GRID
-   ========================================================================== */
-.baskets-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 24px;
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Visual state applied when hidden or resetting options */
-.baskets-grid.hidden {
-    opacity: 0;
-    transform: translateY(40px);
-    pointer-events: none;
-}
-
-.basket-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
-}
-
-.basket-header {
-    font-size: 1.15rem;
-    font-weight: 600;
-    padding-bottom: 12px;
-    margin-bottom: 16px;
-    border-bottom: 2px solid var(--border-color);
-}
-
-/* Custom indicator color cues for core domains */
-.color-la { border-color: var(--lavender-primary); color: var(--lavender-dark); }
-.color-opt { border-color: #61b15a; color: #407038; }
-.color-prob { border-color: #ff9234; color: #b85c10; }
-.color-stoch { border-color: #3492ff; color: #125199; }
-.color-calc { border-color: #a370f7; color: #6336b0; }
-.color-non { border-color: #86868b; color: #444446; }
-
-.topic-list {
-    list-style-type: none;
-}
-
-.syllabus-topic-item {
-    font-size: 0.9rem;
-    line-height: 1.45;
-    padding: 8px 12px;
-    background-color: rgba(0, 0, 0, 0.02);
-    border-radius: 8px;
-    margin-bottom: 8px;
-    color: #3a3a3c;
-    border-left: 3px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Empty Prerequisite Gap Alert State */
-.empty-basket-alert {
-    display: flex;
-    align-items: center;
-    background-color: rgba(255, 123, 123, 0.08);
-    border: 1px dashed rgba(255, 123, 123, 0.3);
-    padding: 16px;
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-.warning-icon {
-    font-size: 1.3rem;
-    margin-right: 12px;
-}
-
-.gap-text {
-    font-size: 0.88rem;
-    color: #c93b3b;
-    font-weight: 500;
-    line-height: 1.35;
-}
-
-/* ==========================================================================
-   DYNAMIC STATUS BADGE PILLS
-   ========================================================================== */
-.basket-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.status-badge {
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 20px;
-    letter-spacing: 0.3px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-}
-
-/* Color palettes mapping to our metrics */
-.status-strong {
-    background-color: rgba(29, 157, 73, 0.12);
-    color: #1d9d49;
-    border: 1px solid rgba(29, 157, 73, 0.25);
-}
-
-.status-manageable {
-    background-color: rgba(204, 122, 0, 0.12);
-    color: #b36b00;
-    border: 1px solid rgba(204, 122, 0, 0.25);
-}
-
-.status-weak {
-    background-color: rgba(255, 123, 123, 0.12);
-    color: #d93838;
-    border: 1px solid rgba(255, 123, 123, 0.25);
-}
-
-/* ==========================================================================
-   TARGETED SELF-STUDY ACTION HUB
-   ========================================================================== */
-.action-plan-card {
-    margin-top: 40px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(142, 143, 250, 0.2);
-}
-
-.action-plan-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-    color: var(--text-primary);
-}
-
-.plan-intro {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 24px;
-}
-
-.plan-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.plan-item {
-    padding: 20px;
-    border-radius: 12px;
+/* Premium Filter Controls Pill Bar */
+.filter-control-panel {
     background: #ffffff;
     border: 1px solid var(--border-color);
-}
-
-.plan-item h4 {
-    font-size: 1rem;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.plan-critical { border-left: 4px solid var(--gap-warning); }
-.plan-warning { border-left: 4px solid #ff9234; }
-
-.severity-tag {
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    border-radius: 10px;
-    background: #f4f4f5;
-    color: #52525b;
-}
-
-.plan-critical .severity-tag { background: rgba(255, 123, 123, 0.15); color: #d93838; }
-.plan-warning .severity-tag { background: rgba(255, 146, 52, 0.15); color: #b85c10; }
-
-.plan-item p {
-    font-size: 0.88rem;
-    line-height: 1.4;
-    color: #444446;
-    margin-bottom: 8px;
-}
-
-.resource-tip {
-    background-color: rgba(142, 143, 250, 0.05);
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid rgba(142, 143, 250, 0.1);
-}
-
-/* UI Utility States */
-.hidden {
-    display: none !important;
-}
-
-.empty-notice {
-    color: #a0aec0;
-    font-style: italic;
-    list-style-type: none !important;
-}
-
-/* Action Plan Accents */
-.action-plan-card {
-    margin-top: 2rem;
-    padding: 2rem;
-    border-left: 5px solid #e53e3e; /* Highlighting the gaps */
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.gap-tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin: 1.5rem 0;
-}
-
-.gap-tag {
-    background: #fed7d7;
-    color: #9b2c2c;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 0.85rem;
-}
-
-/* Premium Master Table Styling Changes */
-.percentage-matrix {
-    border-collapse: separate;
-    border-spacing: 0 8px; /* Clean floating row separation look */
-    width: 100%;
-}
-
-.percentage-matrix tr {
-    background: rgba(255, 255, 255, 0.03);
-    transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.percentage-matrix tr:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transform: scale(1.005);
-}
-
-.table-search-bar input {
-    width: 100%;
-    padding: 12px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    color: #fff;
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.table-search-bar input:focus {
-    outline: none;
-    border-color: #4A5568;
-    background: rgba(255, 255, 255, 0.08);
-}
-
-/* Mathematical Depth Interactive Panel */
-.domain-depth-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.depth-tab {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.depth-tab:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.depth-details {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    font-size: 0.85rem;
-    color: #cbd5e0;
-    margin-top: 0.5rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.depth-tab.active .depth-details {
-    max-height: 120px;
-    opacity: 1;
-}
-
-/* Ultra-Smooth Interactivity Animations */
-.dynamic-fade {
-    opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dynamic-fade.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Premium Priority Badge Accents */
-.course-meta-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding: 0.5rem 0;
-}
-
-.course-name-text {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #f7fafc;
-}
-
-.priority-badge {
-    align-self: flex-start;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-weight: 700;
-}
-
-/* Color Coding Market Value Priorities */
-.tag-vital {
-    background: rgba(246, 224, 94, 0.15);
-    color: #ecc94b;
-    border: 1px solid rgba(246, 224, 94, 0.3);
-}
-
-.tag-foundational {
-    background: rgba(66, 153, 225, 0.15);
-    color: #4299e1;
-    border: 1px solid rgba(66, 153, 225, 0.3);
-}
-
-.tag-impact {
-    background: rgba(72, 187, 120, 0.15);
-    color: #48bb78;
-    border: 1px solid rgba(72, 187, 120, 0.3);
-}
-
-.tag-default {
-    background: rgba(160, 174, 192, 0.15);
-    color: #a0aec0;
-    border: 1px solid rgba(160, 174, 192, 0.3);
-}
-
-/* Ensure Course Names & Headings Stand Out Boldly */
-.course-name-text {
-    font-size: 1.05rem;
-    font-weight: 700 !important;
-    color: #ffffff !important; /* Forces high-contrast white text */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-/* Fix for the Top 5 Baskets Readability */
-.basket-card h3, 
-#baskets-grid h3,
-[id$="-header"] {
-    color: #f7fafc !important;
-    font-weight: 800 !important;
-    font-size: 1.2rem;
-    letter-spacing: 0.03em;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-/* Fix for Invisible Topics under Baskets */
-.syllabus-topic-item,
-#baskets-grid li,
-.empty-notice {
-    color: #cbd5e0 !important; /* High contrast light grey/silver */
-    font-weight: 500 !important;
-    font-size: 0.95rem !important;
-    line-height: 1.5;
-    margin-bottom: 0.4rem;
-}
-
-/* Premium Filter Controls Row */
-.filter-control-panel {
-    background: #1a202c;
-    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1.25rem;
-    border-radius: 12px;
+    border-radius: 16px;
     margin-bottom: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
 }
 
 .search-input-wrapper {
@@ -613,15 +252,23 @@ body {
 
 .search-input-wrapper input {
     width: 100%;
-    padding: 0.75rem 1rem;
-    background: #2d3748;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    background: #f5f5f7;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    color: var(--text-primary);
+    border-radius: 10px;
     font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
-/* Premium Priority Filter Pills */
+.search-input-wrapper input:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: var(--lavender-primary);
+    box-shadow: 0 0 0 3px rgba(142, 143, 250, 0.15);
+}
+
 .filter-pills-group {
     display: flex;
     gap: 0.5rem;
@@ -629,9 +276,9 @@ body {
 }
 
 .filter-pill {
-    padding: 0.5rem 1rem;
-    background: #2d3748;
-    color: #a0aec0;
+    padding: 0.5rem 1.1rem;
+    background: #f5f5f7;
+    color: var(--text-secondary);
     border: 1px solid transparent;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -641,13 +288,192 @@ body {
 }
 
 .filter-pill:hover {
-    background: #4a5568;
-    color: #fff;
+    background: #e8e8ed;
+    color: var(--text-primary);
 }
 
 .filter-pill.active {
-    background: #3182ce;
-    color: #fff;
-    border-color: #63b3ed;
-    box-shadow: 0 0 10px rgba(49, 130, 206, 0.4);
+    background: var(--lavender-dark);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(100, 101, 193, 0.25);
+}
+
+/* ==========================================================================
+   DYNAMIC SLIDING 6-BASKETS SYSTEM GRID
+   ========================================================================== */
+.baskets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+}
+
+.baskets-grid.hidden {
+    display: none !important;
+}
+
+.basket-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.01);
+}
+
+/* High Contrast Header Config inside Cards */
+.basket-card h3, 
+.basket-header {
+    font-size: 1.2rem;
+    font-weight: 700 !important;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #f5f5f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* High Visibility Indicator Color Cues */
+.color-la { border-color: var(--lavender-primary); color: #434494 !important; }
+.color-opt { border-color: #48bb78; color: #276749 !important; }
+.color-prob { border-color: #ed8936; color: #9c4221 !important; }
+.color-stoch { border-color: #4299e1; color: #2b6cb0 !important; }
+.color-calc { border-color: #9f7aea; color: #553c9a !important; }
+.color-non { border-color: #a0aec0; color: #4a5568 !important; }
+
+.topic-list {
+    list-style-type: none;
+}
+
+.syllabus-topic-item, .topic-list li {
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+    padding: 10px 14px;
+    background-color: #f5f5f7 !important;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: var(--text-primary) !important;
+    font-weight: 500 !important;
+    border-left: 3.5px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Custom left borders matching the core indicators for items */
+.basket-card:nth-of-type(1) li { border-left-color: var(--lavender-primary); }
+.basket-card:nth-of-type(2) li { border-left-color: #48bb78; }
+.basket-card:nth-of-type(3) li { border-left-color: #ed8936; }
+.basket-card:nth-of-type(4) li { border-left-color: #4299e1; }
+.basket-card:nth-of-type(5) li { border-left-color: #9f7aea; }
+.basket-card:nth-of-type(6) li { border-left-color: #a0aec0; }
+
+/* ==========================================================================
+   MATHEMATICAL SYLLABUS CORE FRAMEWORK (ACCORDION)
+   ========================================================================== */
+.syllabus-framework-card {
+    background: var(--card-bg);
+}
+
+.depth-intro {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.5;
+}
+
+.accordion-item button {
+    transition: background 0.2s ease, color 0.2s ease;
+    color: var(--text-primary) !important;
+}
+
+.accordion-item button:hover {
+    background: rgba(0, 0, 0, 0.02) !important;
+    color: var(--lavender-dark) !important;
+}
+
+.accordion-item ul {
+    list-style-type: none;
+    padding: 8px 0;
+}
+
+/* ==========================================================================
+   TARGETED SELF-STUDY ACTION HUB
+   ========================================================================== */
+.action-plan-card {
+    border-left: 5px solid var(--gap-warning);
+    background: #ffffff;
+}
+
+.action-plan-card h2 {
+    color: #c53030;
+}
+
+.gap-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.25rem 0;
+}
+
+.gap-tag {
+    background: #fff5f5;
+    color: #9b2c2c;
+    border: 1px solid #feb2b2;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.action-footer-note {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   DYNAMIC STATUS PILLS & BADGES
+   ========================================================================== */
+.course-meta-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.course-name-text {
+    font-size: 1.05rem;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    text-shadow: none !important;
+}
+
+.priority-badge {
+    align-self: flex-start;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.tag-vital { background: #fffaf0; color: #dd6b20; border: 1px solid #fbd38d; }
+.tag-foundational { background: #ebf8ff; color: #2b6cb0; border: 1px solid #90cdf4; }
+.tag-impact { background: #f0fff4; color: #2f855a; border: 1px solid #9ae6b4; }
+.tag-default { background: #f7fafc; color: #4a5568; border: 1px solid #e2e8f0; }
+
+/* Utilities */
+.empty-notice {
+    color: var(--text-muted) !important;
+    font-style: italic;
+    background: transparent !important;
+    border: none !important;
+    padding-left: 0 !important;
+}
+
+.ultra-smooth-reveal {
+    animation: slideUpFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
 }
