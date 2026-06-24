@@ -284,3 +284,41 @@ body {
     font-weight: 500;
     line-height: 1.35;
 }
+
+/* ==========================================================================
+   DYNAMIC STATUS BADGE PILLS
+   ========================================================================== */
+.basket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+/* Color palettes mapping to our metrics */
+.status-strong {
+    background-color: rgba(29, 157, 73, 0.12);
+    color: #1d9d49;
+    border: 1px solid rgba(29, 157, 73, 0.25);
+}
+
+.status-manageable {
+    background-color: rgba(204, 122, 0, 0.12);
+    color: #b36b00;
+    border: 1px solid rgba(204, 122, 0, 0.25);
+}
+
+.status-weak {
+    background-color: rgba(255, 123, 123, 0.12);
+    color: #d93838;
+    border: 1px solid rgba(255, 123, 123, 0.25);
+}
