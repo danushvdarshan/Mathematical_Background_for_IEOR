@@ -523,11 +523,14 @@ function renderStudentBaskets(selectedCollegeKey) {
 // TARGETED SELF-STUDY ACTION PLAN GENERATOR (Side-by-Side Mini Boxes)
 // ==========================================================================
 function generateDetailedActionPlan(gapsFound) {
+    const actionPlanWrapper = document.getElementById("action-plan-box"); // Target the outer hidden section
     const gridContainer = document.getElementById("action-plan-grid");
     const footer = document.getElementById("action-footer");
-    if (!gridContainer) return;
-    // ADD THIS LINE: Un-hide the box so it actually shows up!
-    gridContainer.style.display = "block"; 
+    
+    if (!gridContainer || !actionPlanWrapper) return;
+    
+    // FIX: Unhide the outer wrapper so it actually appears on the page
+    actionPlanWrapper.style.display = "block"; 
 
     gridContainer.innerHTML = ""; // Clear old boxes
 
@@ -551,13 +554,12 @@ function generateDetailedActionPlan(gapsFound) {
         if (footer) footer.style.display = "block";
     } else {
         gridContainer.innerHTML = `
-            <div style="background:#eefaf2; color:#1d9d49; padding:20px; border-radius:12px; width:100%; grid-column: 1 / -1;">
-                Your background fully aligns with the IITB IEOR core guidelines! No gaps detected.
+            <div style="background: linear-gradient(145deg, #f0fdfa, #ccfbf1); color:#0f766e; padding:20px; border-radius:12px; width:100%; grid-column: 1 / -1; border: 1px solid #5eead4;">
+                🎉 Your background fully aligns with the IITB IEOR core guidelines! No major gaps detected.
             </div>`;
         if (footer) footer.style.display = "none";
     }
 }
-
 // ==========================================================================
 // 6 & 7. UNIFIED LIFECYCLE ENGINE & INTERACTIVITY
 // ==========================================================================
