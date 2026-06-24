@@ -542,7 +542,7 @@ function generateDetailedActionPlan(gapsFound) {
             // Create independent card for each gap
             const boxHtml = `
                 <div class="plan-item ${isCritical ? 'plan-critical' : 'plan-warning'}">
-                    <h4>${gap.name} <span class="severity-tag">${gap.severity}</span></h4>
+                    <h4>${gap.name} <span class="status-badge">${gap.severity}</span></h4>
                     <p style="margin-bottom:15px; color:#424245; font-size:0.95rem;"><strong>Core Focus:</strong> ${resource.topic}</p>
                     <div class="resource-tip">
                         <strong>${isCritical ? '📚' : '📺'} Remedy:</strong> ${resource.recommendation}
