@@ -20,109 +20,97 @@
             <p class="subtitle">Prerequisite Mapping and Curriculum Alignment Track</p>
         </header>
 
+        <section class="dashboard-card domain-depth-card">
+            <h2>Required Mathematical Depth Foundations</h2>
+            <p class="depth-intro">Standard engineering math does not inherently match IEOR rigor. Click on any domain block below to reveal the exact required sub-topics:</p>
+            <div class="domain-depth-grid">
+                <div class="depth-tab" onclick="toggleDepthDetail('la-depth')">
+                    <strong>Linear Algebra</strong>
+                    <div id="la-depth" class="depth-details">SVD, LU/QR Factorization, Inner Product Spaces, Spectral Theorems, Low-Rank Approximations.</div>
+                </div>
+                <div class="depth-tab" onclick="toggleDepthDetail('opt-depth')">
+                    <strong>Optimization</strong>
+                    <div id="opt-depth" class="depth-details">KKT Conditions, Simplex Method, Duality Theory, Convex Analysis, Integer Programming.</div>
+                </div>
+                <div class="depth-tab" onclick="toggleDepthDetail('prob-depth')">
+                    <strong>Probability &amp; Stats</strong>
+                    <div id="prob-depth" class="depth-details">Maximum Likelihood Estimation (MLE), Concentration Inequalities, Multivariate Distributions, Hypothesis Testing.</div>
+                </div>
+                <div class="depth-tab" onclick="toggleDepthDetail('stoch-depth')">
+                    <strong>Stochastic Processes</strong>
+                    <div id="stoch-depth" class="depth-details">Markov Chains, Poisson Processes, Renewal Theory, Transition Matrices, Queueing Models.</div>
+                </div>
+                <div class="depth-tab" onclick="toggleDepthDetail('calc-depth')">
+                    <strong>Calculus</strong>
+                    <div id="calc-depth" class="depth-details">Multivariable Jacobians, Constrained Lagrange Multipliers, Fourier/Laplace Transforms, High-order PDEs.</div>
+                </div>
+            </div>
+        </section>
+
         <section class="dashboard-card section-table">
-            <h2>Baseline Curriculum Alignment Matrix</h2>
+            <h2>IIT Bombay IEOR Master Curriculum Weight Matrix</h2>
+            <div class="table-search-bar">
+                <input type="text" id="matrix-search" placeholder="🔍 Search through the 76 master courses instantly..." onkeyup="filterMasterTable()">
+            </div>
             <div class="table-wrapper">
                 <table class="percentage-matrix">
                     <thead>
                         <tr>
-                            <th>NIT Institute &amp; Program</th>
+                            <th>IIT Bombay Course Title</th>
                             <th>Linear Algebra</th>
                             <th>Optimization</th>
                             <th>Probability &amp; Stats</th>
                             <th>Stochastic</th>
                             <th>Calculus</th>
-                            <th>Overall Match</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>NIT Calicut (Eng. Physics)</strong></td>
-                            <td>100%</td>
-                            <td>0%</td>
-                            <td>85%</td>
-                            <td>0%</td>
-                            <td>80%</td>
-                            <td class="high-match">53%</td>
-                        </tr>
-                        <tr>
-                            <td><strong>NIT Calicut (Mechanical)</strong></td>
-                            <td>75%</td>
-                            <td>0%</td>
-                            <td>95%</td>
-                            <td>0%</td>
-                            <td>100%</td>
-                            <td class="high-match">54%</td>
-                        </tr>
-                        <tr>
-                            <td><strong>SVNIT Surat (Core First Year)</strong></td>
-                            <td>50%</td>
-                            <td>0%</td>
-                            <td>50%</td>
-                            <td>0%</td>
-                            <td>70%</td>
-                            <td class="mid-match">34%</td>
-                        </tr>
-                        <tr>
-                            <td><strong>VNIT Nagpur (MME Sequence)</strong></td>
-                            <td>50%</td>
-                            <td>0%</td>
-                            <td>40%</td>
-                            <td>0%</td>
-                            <td>85%</td>
-                            <td class="mid-match">35%</td>
-                        </tr>
-                    </tbody>
+                    <tbody id="ieor-courses-table-body">
+                        </tbody>
                 </table>
             </div>
         </section>
 
         <section class="control-panel">
-            <label for="college-selector" class="control-label">Select Target Curriculum for Deep-Dive Analysis:</label>
-            <select id="college-selector" class="premium-dropdown">
-                <option value="" disabled selected>Choose an NIT Program...</option>
-                <option value="nitc_eng_phys">NIT Calicut — Engineering Physics</option>
-                <option value="nitc_mech">NIT Calicut — Mechanical Engineering</option>
-                <option value="svnit_surat">SVNIT Surat — Engineering Mathematics Track</option>
-                <option value="vnit_nagpur">VNIT Nagpur — Metallurgical &amp; Materials Math</option>
-            </select>
+            <label for="college-selector" class="control-label">Compare Against Your NIT Background:</label>
+            <div class="dropdown-wrapper">
+                <select id="college-selector" class="premium-dropdown">
+                    <option value="" disabled selected>Choose an NIT Program...</option>
+                    <option value="nitc_eng_phys">NIT Calicut — Engineering Physics</option>
+                    <option value="nitc_mech">NIT Calicut — Mechanical Engineering</option>
+                    <option value="svnit_surat">SVNIT Surat — Engineering Mathematics Track</option>
+                    <option value="vnit_nagpur">VNIT Nagpur — Metallurgical &amp; Materials Math</option>
+                </select>
+            </div>
         </section>
 
-        <section id="baskets-grid" class="baskets-grid hidden">
-            
+        <section id="baskets-grid" class="baskets-grid dynamic-fade hidden">
             <div class="basket-card">
                 <div id="la-header" class="basket-header color-la">Linear Algebra </div>
                 <ul id="linear-algebra-list" class="topic-list"></ul>
             </div>
-        
             <div class="basket-card">
                 <div id="opt-header" class="basket-header color-opt">Optimization </div>
                 <ul id="optimization-list" class="topic-list"></ul>
             </div>
-        
             <div class="basket-card">
                 <div id="prob-header" class="basket-header color-prob">Probability &amp; Statistics </div>
                 <ul id="probability-stats-list" class="topic-list"></ul>
             </div>
-        
             <div class="basket-card">
                 <div id="stoch-header" class="basket-header color-stoch">Stochastic Processes </div>
                 <ul id="stochastic-list" class="topic-list"></ul>
             </div>
-        
             <div class="basket-card">
                 <div id="calc-header" class="basket-header color-calc">Calculus &amp; Differential Eq. </div>
                 <ul id="calculus-list" class="topic-list"></ul>
             </div>
-        
             <div class="basket-card">
                 <div id="non-header" class="basket-header color-non">Non-IEOR Foundation Math </div>
                 <ul id="non-ieor-list" class="topic-list"></ul>
             </div>
-        
         </section>
 
-        <section id="action-plan-box" class="dashboard-card action-plan-card" style="display: none;">
+        <section id="action-plan-box" class="dashboard-card action-plan-card dynamic-fade" style="display: none;">
         </section>
 
     </main>
