@@ -17,41 +17,133 @@
     <main class="app-container">
         <header class="app-header">
             <h1>IEOR Analytics Dashboard</h1>
-            <p class="subtitle">Prerequisite Mapping and Curriculum Alignment Track</p>
+            <p class="subtitle">Mathematical Background and Curriculum Discrepancy Track</p>
         </header>
 
-        <section class="dashboard-card domain-depth-card">
-            <h2>Required Mathematical Depth Foundations</h2>
-            <p class="depth-intro">Standard engineering math does not inherently match IEOR rigor. Click on any domain block below to reveal the exact required sub-topics:</p>
-            <div class="domain-depth-grid">
-                <div class="depth-tab" onclick="toggleDepthDetail('la-depth')">
-                    <strong>Linear Algebra</strong>
-                    <div id="la-depth" class="depth-details">SVD, LU/QR Factorization, Inner Product Spaces, Spectral Theorems, Low-Rank Approximations.</div>
+        <section class="dashboard-card syllabus-framework-card" style="margin-bottom: 2rem;">
+            <h2>📐 IIT Bombay IEOR Core Syllabus Framework</h2>
+            <p class="depth-intro" style="margin-bottom: 1.5rem;">Click any domain header below to inspect the reference benchmark math structures required at IITB for profound analytical depth.</p>
+            
+            <div class="syllabus-accordion-container" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                
+                <div class="accordion-item" style="border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); border-radius: 8px; overflow: hidden;">
+                    <button onclick="toggleDepthDetail('framework-domain-a')" style="width: 100%; text-align: left; padding: 1rem 1.25rem; background: none; border: none; color: #fff; font-weight: 700; font-size: 1.05rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Domain A: Linear Algebra &amp; Vector Spaces</span>
+                        <span style="color: #4299e1;">▼</span>
+                    </button>
+                    <div id="framework-domain-a" style="display: none; padding: 0 1.25rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; line-height: 1.6;">
+                            <li class="syllabus-topic-item">Systems of linear equations &amp; Gaussian elimination</li>
+                            <li class="syllabus-topic-item">Fields, Vector Spaces, and Subspaces</li>
+                            <li class="syllabus-topic-item">Linear independence, Basis, and Dimension</li>
+                            <li class="syllabus-topic-item">Fundamental matrix subspaces (Column, Row, and Null spaces)</li>
+                            <li class="syllabus-topic-item">Rank-nullity theorem &amp; Duality</li>
+                            <li class="syllabus-topic-item">Linear transformations</li>
+                            <li class="syllabus-topic-item">Eigenvalues, Eigenvectors, and Characteristic polynomials</li>
+                            <li class="syllabus-topic-item">Cayley-Hamilton Theorem</li>
+                            <li class="syllabus-topic-item">Matrix Diagonalization &amp; Canonical forms (Jordan forms)</li>
+                            <li class="syllabus-topic-item">Unimodularity and Total Unimodularity (TUM matrices)</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="depth-tab" onclick="toggleDepthDetail('opt-depth')">
-                    <strong>Optimization</strong>
-                    <div id="opt-depth" class="depth-details">KKT Conditions, Simplex Method, Duality Theory, Convex Analysis, Integer Programming.</div>
+
+                <div class="accordion-item" style="border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); border-radius: 8px; overflow: hidden;">
+                    <button onclick="toggleDepthDetail('framework-domain-b')" style="width: 100%; text-align: left; padding: 1rem 1.25rem; background: none; border: none; color: #fff; font-weight: 700; font-size: 1.05rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Domain B: Optimization (Continuous, Discrete, &amp; Polyhedral)</span>
+                        <span style="color: #4299e1;">▼</span>
+                    </button>
+                    <div id="framework-domain-b" style="display: none; padding: 0 1.25rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; line-height: 1.6;">
+                            <li class="syllabus-topic-item">Linear Programming foundations (Geometry/Algebra of the Simplex, Extreme points, Basic Feasible Solutions)</li>
+                            <li class="syllabus-topic-item">LP Duality theory, Primal-Dual relationships, and Complementary slackness</li>
+                            <li class="syllabus-topic-item">Sensitivity analysis</li>
+                            <li class="syllabus-topic-item">First and second-order optimality conditions (Necessity vs. Sufficiency)</li>
+                            <li class="syllabus-topic-item">Unconstrained vs. Constrained optimization (Lagrange multipliers &amp; Karush-Kuhn-Tucker/KKT conditions)</li>
+                            <li class="syllabus-topic-item">Gradient Descent, Newton’s Method, and Hessian-based algorithms (Conjugate directions, Quasi-Newton)</li>
+                            <li class="syllabus-topic-item">Convex Optimization (Convex sets, Convex functions, Lagrangian duality)</li>
+                            <li class="syllabus-topic-item">Polyhedral Theory (Faces, face-lattice, facet/vertex complexity)</li>
+                            <li class="syllabus-topic-item">Discrete/Combinatorial Optimization (Integer Programming, Branch-and-Bound, Mixed-Integer Linear Programming, Binary variable constraint modeling)</li>
+                            <li class="syllabus-topic-item">Network Flows (Shortest Path, Maximum Flow, Min-Cost Flow, Max-Flow Min-Cut Theorem)</li>
+                            <li class="syllabus-topic-item">Total Dual Integrality (TDI), Matroids, Polymatroids, and Submodular function minimization</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="depth-tab" onclick="toggleDepthDetail('prob-depth')">
-                    <strong>Probability &amp; Stats</strong>
-                    <div id="prob-depth" class="depth-details">Maximum Likelihood Estimation (MLE), Concentration Inequalities, Multivariate Distributions, Hypothesis Testing.</div>
+
+                <div class="accordion-item" style="border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); border-radius: 8px; overflow: hidden;">
+                    <button onclick="toggleDepthDetail('framework-domain-c')" style="width: 100%; text-align: left; padding: 1rem 1.25rem; background: none; border: none; color: #fff; font-weight: 700; font-size: 1.05rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Domain C: Probability &amp; Mathematical Statistics</span>
+                        <span style="color: #4299e1;">▼</span>
+                    </button>
+                    <div id="framework-domain-c" style="display: none; padding: 0 1.25rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; line-height: 1.6;">
+                            <li class="syllabus-topic-item">Sample spaces, Events, and Axiomatic probability</li>
+                            <li class="syllabus-topic-item">Conditional probability, Independence, and Bayes Theorem</li>
+                            <li class="syllabus-topic-item">Random variables (Discrete &amp; Continuous), Probability Mass Functions (PMF), Probability Density Functions (PDF), and Cumulative Distribution Functions (CDF)</li>
+                            <li class="syllabus-topic-item">Joint, Marginal, and Conditional distributions</li>
+                            <li class="syllabus-topic-item">Mathematical Expectation, Variance, Covariance, Correlation, Moments, and Moment Generating Functions (MGF)</li>
+                            <li class="syllabus-topic-item">Standard Distributions (Bernoulli, Binomial, Poisson, Exponential, Uniform, Normal)</li>
+                            <li class="syllabus-topic-item">Limit Theorems (Weak/Strong Laws of Large Numbers, Central Limit Theorem, Functional CLT)</li>
+                            <li class="syllabus-topic-item">Measure-theoretic probability (Sigma-algebras, Probability Measures, Integration, Lp spaces)</li>
+                            <li class="syllabus-topic-item">Sampling statistics &amp; Order statistics</li>
+                            <li class="syllabus-topic-item">Parameter estimation (Point estimation, Maximum Likelihood Estimators/MLE, Interval estimation, Bias, Efficiency, Consistency)</li>
+                            <li class="syllabus-topic-item">Hypothesis testing (Type I/II errors, t-test, Chi-square tests, Likelihood ratio test, Neyman-Pearson lemma)</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="depth-tab" onclick="toggleDepthDetail('stoch-depth')">
-                    <strong>Stochastic Processes</strong>
-                    <div id="stoch-depth" class="depth-details">Markov Chains, Poisson Processes, Renewal Theory, Transition Matrices, Queueing Models.</div>
+
+                <div class="accordion-item" style="border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); border-radius: 8px; overflow: hidden;">
+                    <button onclick="toggleDepthDetail('framework-domain-d')" style="width: 100%; text-align: left; padding: 1rem 1.25rem; background: none; border: none; color: #fff; font-weight: 700; font-size: 1.05rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Domain D: Stochastic Processes &amp; Queuing Systems</span>
+                        <span style="color: #4299e1;">▼</span>
+                    </button>
+                    <div id="framework-domain-d" style="display: none; padding: 0 1.25rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; line-height: 1.6;">
+                            <li class="syllabus-topic-item">Stochastic processes definition, Sample paths, and Finite-dimensional distributions</li>
+                            <li class="syllabus-topic-item">Memory-less property, Renewal processes, Regenerative processes, and Renewal reward theorem</li>
+                            <li class="syllabus-topic-item">Discrete-Time Markov Chains (Countable state space, Chapman-Kolmogorov equations, Hitting/Stopping times, Strong Markov property, State classification, Recurrence/Transience, Invariant/Stationary distributions, Limiting probabilities, Ergodic theorem)</li>
+                            <li class="syllabus-topic-item">Continuous-Time Markov Chains (Poisson processes, Jump chains, Sojourn times, Birth-death processes, Kolmogorov forward/backward equations, Uniformization, Time-reversed chains)</li>
+                            <li class="syllabus-topic-item">Martingales (Super/Sub-martingales, Doob’s inequalities, Martingale convergence theorems)</li>
+                            <li class="syllabus-topic-item">Random walks, Ladder chains, and Brownian motion (continuous paths, non-differentiability, hitting times)</li>
+                            <li class="syllabus-topic-item">Queueing Theory (M/G/1, GI/M/1, G/G/1 queues, Little’s Law, PASTA, Drift criteria, Fluid models)</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="depth-tab" onclick="toggleDepthDetail('calc-depth')">
-                    <strong>Calculus</strong>
-                    <div id="calc-depth" class="depth-details">Multivariable Jacobians, Constrained Lagrange Multipliers, Fourier/Laplace Transforms, High-order PDEs.</div>
+
+                <div class="accordion-item" style="border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); border-radius: 8px; overflow: hidden;">
+                    <button onclick="toggleDepthDetail('framework-domain-e')" style="width: 100%; text-align: left; padding: 1rem 1.25rem; background: none; border: none; color: #fff; font-weight: 700; font-size: 1.05rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Domain E: Calculus, Differential Equations &amp; Systems</span>
+                        <span style="color: #4299e1;">▼</span>
+                    </button>
+                    <div id="framework-domain-e" style="display: none; padding: 0 1.25rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; line-height: 1.6;">
+                            <li class="syllabus-topic-item">Multivariable calculus (Gradients, Jacobians, Hessians, Taylor series expansion)</li>
+                            <li class="syllabus-topic-item">Ordinary Differential Equations (ODEs) (First, second, and higher-order linear ODEs, systems of ODEs, Existence and uniqueness theorems)</li>
+                            <li class="syllabus-topic-item">Difference equations (solutions and stability)</li>
+                            <li class="syllabus-topic-item">Integral transforms (Laplace transforms, Z-transforms)</li>
+                            <li class="syllabus-topic-item">Linear Time-Invariant (LTI) systems, Transfer functions, State-space representation, and Linearization of non-linear systems</li>
+                            <li class="syllabus-topic-item">Control theory foundations (Stability, Controllability, Observability)</li>
+                        </ul>
+                    </div>
                 </div>
+
             </div>
         </section>
 
-        <section class="dashboard-card section-table">
-            <h2>IIT Bombay IEOR Master Curriculum Weight Matrix</h2>
-            <div class="table-search-bar">
-                <input type="text" id="matrix-search" placeholder="🔍 Search through the 76 master courses instantly..." onkeyup="filterMasterTable()">
+        <div class="filter-control-panel">
+            <div class="search-input-wrapper">
+                <input type="text" id="matrix-search" onkeyup="filterMasterTable()" placeholder="🔍 Omni-Search courses by keyword (e.g., Deep Learning, Optimization, Simulation)...">
             </div>
+            <div class="filter-pills-group">
+                <button class="filter-pill active" onclick="applyPriorityFilter('ALL', this)">All Mathematical Matrix</button>
+                <button class="filter-pill" onclick="applyPriorityFilter('Vital', this)">Highly Vital (Future-Proof)</button>
+                <button class="filter-pill" onclick="applyPriorityFilter('Foundational', this)">Foundational</button>
+                <button class="filter-pill" onclick="applyPriorityFilter('Impact', this)">Application Impact</button>
+                <button class="filter-pill" onclick="applyPriorityFilter('Theory', this)">Fundamental Theory</button>
+            </div>
+        </div>
+
+        <section class="dashboard-card section-table">
+            <h2>IIT Bombay IEOR Core Curriculum Weight Matrix</h2>
             <div class="table-wrapper">
                 <table class="percentage-matrix">
                     <thead>
@@ -85,27 +177,27 @@
 
         <section id="baskets-grid" class="baskets-grid dynamic-fade hidden">
             <div class="basket-card">
-                <div id="la-header" class="basket-header color-la">Linear Algebra </div>
+                <h3 id="la-header" class="basket-header color-la">Linear Algebra</h3>
                 <ul id="linear-algebra-list" class="topic-list"></ul>
             </div>
             <div class="basket-card">
-                <div id="opt-header" class="basket-header color-opt">Optimization </div>
+                <h3 id="opt-header" class="basket-header color-opt">Optimization</h3>
                 <ul id="optimization-list" class="topic-list"></ul>
             </div>
             <div class="basket-card">
-                <div id="prob-header" class="basket-header color-prob">Probability &amp; Statistics </div>
+                <h3 id="prob-header" class="basket-header color-prob">Probability &amp; Statistics</h3>
                 <ul id="probability-stats-list" class="topic-list"></ul>
             </div>
             <div class="basket-card">
-                <div id="stoch-header" class="basket-header color-stoch">Stochastic Processes </div>
+                <h3 id="stoch-header" class="basket-header color-stoch">Stochastic Processes</h3>
                 <ul id="stochastic-list" class="topic-list"></ul>
             </div>
             <div class="basket-card">
-                <div id="calc-header" class="basket-header color-calc">Calculus &amp; Differential Eq. </div>
+                <h3 id="calc-header" class="basket-header color-calc">Calculus &amp; Differential Eq.</h3>
                 <ul id="calculus-list" class="topic-list"></ul>
             </div>
             <div class="basket-card">
-                <div id="non-header" class="basket-header color-non">Non-IEOR Foundation Math </div>
+                <h3 id="non-header" class="basket-header color-non">Non-IEOR Foundation Math</h3>
                 <ul id="non-ieor-list" class="topic-list"></ul>
             </div>
         </section>
