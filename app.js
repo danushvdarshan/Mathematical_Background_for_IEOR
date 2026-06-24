@@ -1,527 +1,236 @@
 // ==========================================================================
-// 1. THE COMPLETE COURSE WEIGHT MATRIX
+// 1. THE COMPLETE COURSE WEIGHT MATRIX (FILTERED & STRATIFIED)
 // ==========================================================================
 const ieorCourseMatrix = {
-    "Introduction to IE and OR": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
-    },
     "Probability and Statistics": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 85,
-        "Stochastic Processes": 5,
-        "Calculus": 10
+        "Linear Algebra": 0, "Optimization": 0, "Probability & Statistics": 85, "Stochastic Processes": 5, "Calculus": 10,
+        "priority": "Foundational Prerequisite"
     },
     "Data Analytics, AI/ML Lab": {
-        "Linear Algebra": 10,
-        "Optimization": 10,
-        "Probability & Statistics": 60,
-        "Stochastic Processes": 20,
-        "Calculus": 0
-    },
-    "Digital Enterprise Systems Lab": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
-    },
-    "Data Structures and Algorithms": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 10, "Optimization": 10, "Probability & Statistics": 60, "Stochastic Processes": 20, "Calculus": 0,
+        "priority": "Highly Vital (Industry Trend)"
     },
     "Feedback and Dynamics": {
-        "Linear Algebra": 10,
-        "Optimization": 20,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 70
+        "Linear Algebra": 10, "Optimization": 20, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 70,
+        "priority": "Fundamental Theory"
     },
     "Industrial Engineering Lab": {
-        "Linear Algebra": 0,
-        "Optimization": 20,
-        "Probability & Statistics": 40,
-        "Stochastic Processes": 40,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 20, "Probability & Statistics": 40, "Stochastic Processes": 40, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Introduction to Artificial Intelligence and Machine Learning": {
-        "Linear Algebra": 30,
-        "Optimization": 20,
-        "Probability & Statistics": 45,
-        "Stochastic Processes": 0,
-        "Calculus": 5
-    },
-    "Industrial Systems": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 30, "Optimization": 20, "Probability & Statistics": 45, "Stochastic Processes": 0, "Calculus": 5,
+        "priority": "Highly Vital (Industry Trend)"
     },
     "Nonlinear and Discrete Optimization": {
-        "Linear Algebra": 20,
-        "Optimization": 60,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 20
+        "Linear Algebra": 20, "Optimization": 60, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 20,
+        "priority": "Foundational Prerequisite"
     },
     "Linear Optimization and Network Flows": {
-        "Linear Algebra": 30,
-        "Optimization": 70,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 30, "Optimization": 70, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "Foundational Prerequisite"
     },
     "Optimization Modeling LAB": {
-        "Linear Algebra": 10,
-        "Optimization": 90,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
-    },
-    "Programming & Computing Lab": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 10, "Optimization": 90, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Optimization Models": {
-        "Linear Algebra": 20,
-        "Optimization": 80,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 80, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "Foundational Prerequisite"
     },
     "Probabilistic Models": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 30,
-        "Stochastic Processes": 70,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 0, "Probability & Statistics": 30, "Stochastic Processes": 70, "Calculus": 0,
+        "priority": "Foundational Prerequisite"
     },
     "Operations Analysis": {
-        "Linear Algebra": 0,
-        "Optimization": 40,
-        "Probability & Statistics": 30,
-        "Stochastic Processes": 30,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 40, "Probability & Statistics": 30, "Stochastic Processes": 30, "Calculus": 0,
+        "priority": "Fundamental Theory"
     },
     "Modeling & Computation Lab": {
-        "Linear Algebra": 20,
-        "Optimization": 40,
-        "Probability & Statistics": 20,
-        "Stochastic Processes": 0,
-        "Calculus": 20
-    },
-    "Computer Programming Lab": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 40, "Probability & Statistics": 20, "Stochastic Processes": 0, "Calculus": 20,
+        "priority": "High Application Impact"
     },
     "Optimization Techniques": {
-        "Linear Algebra": 20,
-        "Optimization": 60,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 20
+        "Linear Algebra": 20, "Optimization": 60, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 20,
+        "priority": "Foundational Prerequisite"
     },
     "Service Engineering and Management": {
-        "Linear Algebra": 0,
-        "Optimization": 20,
-        "Probability & Statistics": 30,
-        "Stochastic Processes": 50,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 20, "Probability & Statistics": 30, "Stochastic Processes": 50, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Discrete Event System Simulation": {
-        "Linear Algebra": 0,
-        "Optimization": 10,
-        "Probability & Statistics": 40,
-        "Stochastic Processes": 50,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 10, "Probability & Statistics": 40, "Stochastic Processes": 50, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Systems Dynamics Modeling & Analysis": {
-        "Linear Algebra": 20,
-        "Optimization": 10,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 70
+        "Linear Algebra": 20, "Optimization": 10, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 70,
+        "priority": "Fundamental Theory"
     },
     "Engineering Statistics": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 90,
-        "Stochastic Processes": 0,
-        "Calculus": 10
+        "Linear Algebra": 0, "Optimization": 0, "Probability & Statistics": 90, "Stochastic Processes": 0, "Calculus": 10,
+        "priority": "Foundational Prerequisite"
     },
     "Analysis & Control of Queues": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 10,
-        "Stochastic Processes": 80,
-        "Calculus": 10
+        "Linear Algebra": 0, "Optimization": 0, "Probability & Statistics": 10, "Stochastic Processes": 80, "Calculus": 10,
+        "priority": "Fundamental Theory"
     },
     "Polyhedra and Combinatorial Optimization": {
-        "Linear Algebra": 40,
-        "Optimization": 60,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 40, "Optimization": 60, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "Fundamental Theory"
     },
     "Mathematical Optimisation Techniques": {
-        "Linear Algebra": 20,
-        "Optimization": 60,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 20
+        "Linear Algebra": 20, "Optimization": 60, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 20,
+        "priority": "Foundational Prerequisite"
     },
     "Networks, Games and Algorithms": {
-        "Linear Algebra": 20,
-        "Optimization": 50,
-        "Probability & Statistics": 10,
-        "Stochastic Processes": 20,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 50, "Probability & Statistics": 10, "Stochastic Processes": 20, "Calculus": 0,
+        "priority": "Highly Vital (Industry Trend)"
     },
     "Introduction to Financial Engineering": {
-        "Linear Algebra": 10,
-        "Optimization": 10,
-        "Probability & Statistics": 30,
-        "Stochastic Processes": 40,
-        "Calculus": 10
+        "Linear Algebra": 10, "Optimization": 10, "Probability & Statistics": 30, "Stochastic Processes": 40, "Calculus": 10,
+        "priority": "Highly Vital (Industry Trend)"
     },
     "Online Learning": {
-        "Linear Algebra": 20,
-        "Optimization": 40,
-        "Probability & Statistics": 40,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 40, "Probability & Statistics": 40, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "Highly Vital (Industry Trend)"
     },
     "Linear Systems": {
-        "Linear Algebra": 60,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 40
+        "Linear Algebra": 60, "Optimization": 0, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 40,
+        "priority": "Foundational Prerequisite"
     },
     "Data Analytics in Operations Research": {
-        "Linear Algebra": 20,
-        "Optimization": 20,
-        "Probability & Statistics": 50,
-        "Stochastic Processes": 10,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 20, "Probability & Statistics": 50, "Stochastic Processes": 10, "Calculus": 0,
+        "priority": "Highly Vital (Industry Trend)"
     },
     "Decision Analysis and Game Theory": {
-        "Linear Algebra": 10,
-        "Optimization": 40,
-        "Probability & Statistics": 30,
-        "Stochastic Processes": 20,
-        "Calculus": 0
+        "Linear Algebra": 10, "Optimization": 40, "Probability & Statistics": 30, "Stochastic Processes": 20, "Calculus": 0,
+        "priority": "Fundamental Theory"
     },
     "Advanced Stochastic Processes for Operations Research": {
-        "Linear Algebra": 10,
-        "Optimization": 0,
-        "Probability & Statistics": 20,
-        "Stochastic Processes": 70,
-        "Calculus": 0
+        "Linear Algebra": 10, "Optimization": 0, "Probability & Statistics": 20, "Stochastic Processes": 70, "Calculus": 0,
+        "priority": "Fundamental Theory"
     },
     "Probability and Stochastic Processes I": {
-        "Linear Algebra": 10,
-        "Optimization": 0,
-        "Probability & Statistics": 40,
-        "Stochastic Processes": 50,
-        "Calculus": 0
+        "Linear Algebra": 10, "Optimization": 0, "Probability & Statistics": 40, "Stochastic Processes": 50, "Calculus": 0,
+        "priority": "Foundational Prerequisite"
     },
     "Probability and Stochastic Processes II": {
-        "Linear Algebra": 10,
-        "Optimization": 0,
-        "Probability & Statistics": 20,
-        "Stochastic Processes": 70,
-        "Calculus": 0
+        "Linear Algebra": 10, "Optimization": 0, "Probability & Statistics": 20, "Stochastic Processes": 70, "Calculus": 0,
+        "priority": "Foundational Prerequisite"
     },
     "Simulation Modeling and Analysis": {
-        "Linear Algebra": 0,
-        "Optimization": 10,
-        "Probability & Statistics": 50,
-        "Stochastic Processes": 40,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 10, "Probability & Statistics": 50, "Stochastic Processes": 40, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Facilities Planning": {
-        "Linear Algebra": 20,
-        "Optimization": 80,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 80, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Network Flow Models and Applications": {
-        "Linear Algebra": 20,
-        "Optimization": 80,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 80, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "Fundamental Theory"
     },
     "Engineering Economic Analysis": {
-        "Linear Algebra": 0,
-        "Optimization": 30,
-        "Probability & Statistics": 40,
-        "Stochastic Processes": 10,
-        "Calculus": 20
+        "Linear Algebra": 0, "Optimization": 30, "Probability & Statistics": 40, "Stochastic Processes": 10, "Calculus": 20,
+        "priority": "High Application Impact"
     },
     "Deep Learning - Theory and Practice": {
-        "Linear Algebra": 40,
-        "Optimization": 30,
-        "Probability & Statistics": 20,
-        "Stochastic Processes": 0,
-        "Calculus": 10
+        "Linear Algebra": 40, "Optimization": 30, "Probability & Statistics": 20, "Stochastic Processes": 0, "Calculus": 10,
+        "priority": "Highly Vital (Industry Trend)"
     },
     "Industrial Scheduling": {
-        "Linear Algebra": 10,
-        "Optimization": 90,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 10, "Optimization": 90, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Quality Control & Reliability": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 70,
-        "Stochastic Processes": 30,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 0, "Probability & Statistics": 70, "Stochastic Processes": 30, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Applied Integer Programming": {
-        "Linear Algebra": 20,
-        "Optimization": 80,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 80, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "Foundational Prerequisite"
     },
     "Quantitative Analysis in Finance and Marketing": {
-        "Linear Algebra": 20,
-        "Optimization": 30,
-        "Probability & Statistics": 30,
-        "Stochastic Processes": 20,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 30, "Probability & Statistics": 30, "Stochastic Processes": 20, "Calculus": 0,
+        "priority": "Highly Vital (Industry Trend)"
     },
     "Modelling and Optimisation in Flexible Manufacturing System": {
-        "Linear Algebra": 0,
-        "Optimization": 30,
-        "Probability & Statistics": 20,
-        "Stochastic Processes": 50,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 30, "Probability & Statistics": 20, "Stochastic Processes": 50, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Inventory Control and Management Systems": {
-        "Linear Algebra": 0,
-        "Optimization": 30,
-        "Probability & Statistics": 30,
-        "Stochastic Processes": 40,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 30, "Probability & Statistics": 30, "Stochastic Processes": 40, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "IEOR Lab": {
-        "Linear Algebra": 20,
-        "Optimization": 30,
-        "Probability & Statistics": 30,
-        "Stochastic Processes": 20,
-        "Calculus": 0
-    },
-    "MSc.Phd. Research Project I": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
-    },
-    "MSc.Phd. Research Project II": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
-    },
-    "R & D Project": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
-    },
-    "MSc-PhD Project II": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
-    },
-    "Seminar": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
-    },
-    "MSc-PhD Project III": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 30, "Probability & Statistics": 30, "Stochastic Processes": 20, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Neural Nets, Fuzzy Systems and Applications": {
-        "Linear Algebra": 30,
-        "Optimization": 30,
-        "Probability & Statistics": 20,
-        "Stochastic Processes": 20,
-        "Calculus": 0
-    },
-    "Introduction to Knowledge Based Systems and Applications": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 30, "Optimization": 30, "Probability & Statistics": 20, "Stochastic Processes": 20, "Calculus": 0,
+        "priority": "Highly Vital (Industry Trend)"
     },
     "Selected Topics in A.I. in Operations Research": {
-        "Linear Algebra": 30,
-        "Optimization": 30,
-        "Probability & Statistics": 40,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 30, "Optimization": 30, "Probability & Statistics": 40, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "Highly Vital (Industry Trend)"
     },
     "Quantitative Methods in Project Management": {
-        "Linear Algebra": 0,
-        "Optimization": 40,
-        "Probability & Statistics": 40,
-        "Stochastic Processes": 20,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 40, "Probability & Statistics": 40, "Stochastic Processes": 20, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Pricing & Revenue Management": {
-        "Linear Algebra": 0,
-        "Optimization": 30,
-        "Probability & Statistics": 40,
-        "Stochastic Processes": 30,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 30, "Probability & Statistics": 40, "Stochastic Processes": 30, "Calculus": 0,
+        "priority": "Highly Vital (Industry Trend)"
     },
     "Multi-player Decision Making Models": {
-        "Linear Algebra": 20,
-        "Optimization": 50,
-        "Probability & Statistics": 20,
-        "Stochastic Processes": 10,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 50, "Probability & Statistics": 20, "Stochastic Processes": 10, "Calculus": 0,
+        "priority": "Fundamental Theory"
     },
     "Markov Decision Processes": {
-        "Linear Algebra": 10,
-        "Optimization": 30,
-        "Probability & Statistics": 10,
-        "Stochastic Processes": 50,
-        "Calculus": 0
+        "Linear Algebra": 10, "Optimization": 30, "Probability & Statistics": 10, "Stochastic Processes": 50, "Calculus": 0,
+        "priority": "Foundational Prerequisite"
     },
     "IEOR for Health Care": {
-        "Linear Algebra": 0,
-        "Optimization": 40,
-        "Probability & Statistics": 20,
-        "Stochastic Processes": 40,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 40, "Probability & Statistics": 20, "Stochastic Processes": 40, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "OR Applications in Infrastructural and Service Sectors": {
-        "Linear Algebra": 0,
-        "Optimization": 60,
-        "Probability & Statistics": 10,
-        "Stochastic Processes": 30,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 60, "Probability & Statistics": 10, "Stochastic Processes": 30, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Selected Application of Stochastic Models": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 10,
-        "Stochastic Processes": 90,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 0, "Probability & Statistics": 10, "Stochastic Processes": 90, "Calculus": 0,
+        "priority": "Fundamental Theory"
     },
     "Quantitative Models for Supply Chain Management": {
-        "Linear Algebra": 0,
-        "Optimization": 50,
-        "Probability & Statistics": 20,
-        "Stochastic Processes": 30,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 50, "Probability & Statistics": 20, "Stochastic Processes": 30, "Calculus": 0,
+        "priority": "High Application Impact"
     },
-    "Integer Programming:  Theory and Computations": {
-        "Linear Algebra": 30,
-        "Optimization": 70,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
-    },
-    "Communication Skills -II": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
-    },
-    "I Stage Project": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
-    },
-    "II Stage Project": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+    "Integer Programming: Theory and Computations": {
+        "Linear Algebra": 30, "Optimization": 70, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "Foundational Prerequisite"
     },
     "Topics in Industrial Engineering and Operations Research": {
-        "Linear Algebra": 20,
-        "Optimization": 20,
-        "Probability & Statistics": 20,
-        "Stochastic Processes": 20,
-        "Calculus": 20
+        "Linear Algebra": 20, "Optimization": 20, "Probability & Statistics": 20, "Stochastic Processes": 20, "Calculus": 20,
+        "priority": "Fundamental Theory"
     },
     "Advanced Stochastic Simulation": {
-        "Linear Algebra": 0,
-        "Optimization": 10,
-        "Probability & Statistics": 40,
-        "Stochastic Processes": 50,
-        "Calculus": 0
+        "Linear Algebra": 0, "Optimization": 10, "Probability & Statistics": 40, "Stochastic Processes": 50, "Calculus": 0,
+        "priority": "High Application Impact"
     },
     "Convex Analysis": {
-        "Linear Algebra": 30,
-        "Optimization": 50,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 20
+        "Linear Algebra": 30, "Optimization": 50, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 20,
+        "priority": "Foundational Prerequisite"
     },
     "Advanced Topics in Discrete Optimization": {
-        "Linear Algebra": 30,
-        "Optimization": 70,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 30, "Optimization": 70, "Probability & Statistics": 0, "Stochastic Processes": 0, "Calculus": 0,
+        "priority": "Fundamental Theory"
     },
     "Game Dynamics": {
-        "Linear Algebra": 20,
-        "Optimization": 30,
-        "Probability & Statistics": 10,
-        "Stochastic Processes": 20,
-        "Calculus": 20
-    },
-    "Communication Skills": {
-        "Linear Algebra": 0,
-        "Optimization": 0,
-        "Probability & Statistics": 0,
-        "Stochastic Processes": 0,
-        "Calculus": 0
+        "Linear Algebra": 20, "Optimization": 30, "Probability & Statistics": 10, "Stochastic Processes": 20, "Calculus": 20,
+        "priority": "Highly Vital (Industry Trend)"
     }
 };
-
 // ==========================================================================
 // 2. THE NIT PROFILES (For the 6-Basket view)
 // ==========================================================================
@@ -837,60 +546,105 @@ function renderStudentBaskets(selectedCollegeKey) {
 // ==========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Core Element Selection
     const collegeSelect = document.getElementById("college-selector");
     const basketsGrid = document.getElementById("baskets-grid");
     const actionPlanBox = document.getElementById("action-plan-box");
 
-    // 2. Initialize the Baseline Master Table immediately on boot
+    // 1. Initialize the massive 76-subject table immediately on window paint
     populateHomeCourseTable();
 
-    // 3. Handle Dropdown Transitions and Deep-Dive Population
+    // 2. Handle Dropdown Transitions and Deep-Dive Population smoothly
     if (collegeSelect && basketsGrid) {
         collegeSelect.addEventListener("change", (event) => {
             const selectedProgram = event.target.value;
 
-            // Stop if choice is invalid or empty in the nitProfiles dataset
             if (!nitProfiles[selectedProgram]) return;
 
-            // Trigger smooth visual collapse state before shifting data
-            basketsGrid.classList.add("hidden");
-            if (actionPlanBox) actionPlanBox.style.display = "none";
+            // Transition fade out sequence
+            basketsGrid.classList.remove("visible");
+            if (actionPlanBox) {
+                actionPlanBox.classList.remove("visible");
+                setTimeout(() => { actionPlanBox.style.display = "none"; }, 250);
+            }
 
-            // Allow animation frame time to settle before revealing new data
+            // Let animation ease out before swapping data frames
             setTimeout(() => {
-                // Call your primary Section 5 engine to handle badges, lists, and resources
                 renderStudentBaskets(selectedProgram);
 
-                // Smoothly fade the populated grid back into view
+                // Reveal dynamically with smooth ease-in animation
                 basketsGrid.classList.remove("hidden");
-            }, 250);
+                basketsGrid.classList.add("visible");
+                
+                if (actionPlanBox) {
+                    actionPlanBox.style.display = "block";
+                    setTimeout(() => { actionPlanBox.classList.add("visible"); }, 50);
+                }
+            }, 300);
         });
     }
 });
 
-// --- CORE ENGINE TABLE INJECTION ---
+// --- CORE ENGINE INJECTIONS & FILTERS ---
 
-// Populate the main 76-subject curriculum mapping comparison grid
+// Populate the filtered 57-subject mathematical curriculum mapping comparison grid
 function populateHomeCourseTable() {
     const tableBody = document.getElementById("ieor-courses-table-body");
-    if (!tableBody) return; // Silent exit if table container isn't present on this view
+    if (!tableBody) return; 
     
     tableBody.innerHTML = ""; 
 
     Object.keys(ieorCourseMatrix).forEach(courseName => {
-        const weights = ieorCourseMatrix[courseName];
+        const data = ieorCourseMatrix[courseName];
         const row = document.createElement("tr");
         row.className = "course-matrix-row";
         
+        // Define clean visual styling hook matches for our future-proof priorities
+        let priorityClass = "tag-default";
+        if (data.priority.includes("Highly Vital")) priorityClass = "tag-vital";
+        if (data.priority.includes("Foundational")) priorityClass = "tag-foundational";
+        if (data.priority.includes("Impact")) priorityClass = "tag-impact";
+
         row.innerHTML = `
-            <td class="course-title-cell">${courseName}</td>
-            <td class="weight-cell text-center">${weights["Linear Algebra"]}%</td>
-            <td class="weight-cell text-center">${weights["Optimization"]}%</td>
-            <td class="weight-cell text-center">${weights["Probability & Statistics"]}%</td>
-            <td class="weight-cell text-center">${weights["Stochastic Processes"]}%</td>
-            <td class="weight-cell text-center">${weights["Calculus"]}%</td>
+            <td class="course-title-cell">
+                <div class="course-meta-wrapper">
+                    <span class="course-name-text">${courseName}</span>
+                    <span class="priority-badge ${priorityClass}">${data.priority}</span>
+                </div>
+            </td>
+            <td class="weight-cell text-center">${data["Linear Algebra"]}%</td>
+            <td class="weight-cell text-center">${data["Optimization"]}%</td>
+            <td class="weight-cell text-center">${data["Probability & Statistics"]}%</td>
+            <td class="weight-cell text-center">${data["Stochastic Processes"]}%</td>
+            <td class="weight-cell text-center">${data["Calculus"]}%</td>
         `;
         tableBody.appendChild(row);
     });
+}
+
+// Live interactive keyword search across all 76 rows
+function filterMasterTable() {
+    const input = document.getElementById("matrix-search");
+    const filter = input.value.toUpperCase();
+    const tableBody = document.getElementById("ieor-courses-table-body");
+    const tr = tableBody.getElementsByTagName("tr");
+
+    for (let i = 0; i < tr.length; i++) {
+        const td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            const txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+// Expandable math definition toggler
+function toggleDepthDetail(elementId) {
+    const target = document.getElementById(elementId);
+    const parent = target.parentElement;
+    
+    parent.classList.toggle("active");
 }
