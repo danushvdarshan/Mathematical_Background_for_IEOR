@@ -580,3 +580,44 @@ body {
     border-bottom: 1px solid rgba(0,0,0,0.05);
     padding-bottom: 10px;
 }
+
+/* ==========================================================================
+   BASKET HEADER & STATUS BADGE RESTORATION
+   ========================================================================== */
+
+/* 1. Force the title and the badge to sit on opposite sides */
+.basket-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 15px;
+}
+
+/* 2. Restore the small, boxed styling for the badge */
+.status-badge {
+    font-size: 0.75rem !important; /* Makes it smaller than the Domain name */
+    font-weight: 700 !important;
+    padding: 4px 10px !important;
+    border-radius: 6px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Ensure specific badge colors apply based on their severity */
+.status-badge:contains('Strong') {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.status-badge:contains('Manageable') {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+.status-badge:contains('Weak') {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
