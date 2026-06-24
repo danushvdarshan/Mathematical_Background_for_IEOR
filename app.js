@@ -677,49 +677,98 @@ const nitProfiles = {
     
 };
 
-// 4. THE UI RENDERING ENGINE
-function renderStudentBaskets(selectedCollegeKey) {
-    const profile = nitProfiles[selectedCollegeKey];
-    
-    if (!profile) {
-        console.error("Profile key not found in database:", selectedCollegeKey);
-        return;
+// 3.5 REFERENCE ASSESSMENT LOGIC
+function evaluateBasketStatus(basketName, topicsArray) {
+    const topicCount = topicsArray.length;
+
+    // Rule 1: Completely empty baskets mean missing prerequisites
+    if (topicCount === 0) {
+        return { text: "Weak Gap", class: "status-weak" };
     }
 
-    // Array matching your 6 structural DOM container IDs in index.html
+    // Rule 2: Basket-specific evaluation based on depth of curriculum mapping
+    switch (basketName) {
+        case "Linear Algebra":
+            // Check if they covered advanced concepts like SVD
+            const hasAdvancedLA = topicsArray.some(t => t.toLowerCase().includes("svd") || t.toLowerCase().includes("singular value"));
+            if (hasAdvancedLA) return { text: "Strong", class: "status-strong" };
+            return { text: "Manageable", class: "status-manageable" };
+
+        case "Probability & Statistics":
+            // Check if they covered advanced inference matrices
+            const hasInference = topicsArray.some(t => t.toLowerCase().includes("inference") || t.toLowerCase().includes("hypothesis"));
+            if (hasInference && topicCount > 5) return { text: "Strong", class: "status-strong" };
+            return { text: "Manageable", class: "status-manageable" };
+
+        case "Calculus":
+            // Most NITs have extremely strong multivariable calculus setups
+            if (topicCount > 6) return { text: "Strong", class: "status-strong" };
+            return { text: "Manageable", class: "status-manageable" };
+
+        case "Optimization":
+        case "Stochastic Processes":
+            // If any topics ever get added here via electives
+            if (topicCount > 2) return { text: "Strong", class: "status-strong" };
+            return { text: "Manageable", class: "status-manageable" };
+
+        default:
+            return { text: "Manageable", class: "status-manageable" };
+    }
+}
+
+
+// 4. UPDATED UI RENDERING ENGINE (With Dynamic Status Assessment)
+function renderStudentBaskets(selectedCollegeKey) {
+    const profile = nitProfiles[selectedCollegeKey];
+    if (!profile) return;
+
     const basketIds = {
-        "Linear Algebra": "linear-algebra-list",
-        "Optimization": "optimization-list",
-        "Probability & Statistics": "probability-stats-list",
-        "Stochastic Processes": "stochastic-list",
-        "Calculus": "calculus-list",
-        "Non-IEOR": "non-ieor-list"
+        "Linear Algebra": { listId: "linear-algebra-list", headerId: "la-header" },
+        "Optimization": { listId: "optimization-list", headerId: "opt-header" },
+        "Probability & Statistics": { listId: "probability-stats-list", headerId: "prob-header" },
+        "Stochastic Processes": { listId: "stochastic-list", headerId: "stoch-header" },
+        "Calculus": { listId: "calculus-list", headerId: "calc-header" },
+        "Non-IEOR": { listId: "non-ieor-list", headerId: "non-header" }
     };
 
-    // Loop through each domain and inject the structured syllabus items
     Object.keys(basketIds).forEach(basketName => {
-        const containerElement = document.getElementById(basketIds[basketName]);
-        if (!containerElement) return;
+        const targetIds = basketIds[basketName];
+        const listContainer = document.getElementById(targetIds.listId);
+        const headerContainer = document.getElementById(targetIds.headerId);
+        
+        if (!listContainer) return;
+        listContainer.innerHTML = "";
 
-        // Clear out any placeholder content first
-        containerElement.innerHTML = "";
+        const topics = profile[basketName] || [];
 
-        const topics = profile[basketName];
+        // 1. Calculate and append the assessment tag (Except for Non-IEOR foundation)
+        if (headerContainer) {
+            // Strip old badges if they exist
+            const oldBadge = headerContainer.querySelector('.status-badge');
+            if (oldBadge) oldBadge.remove();
 
-        if (!topics || topics.length === 0) {
-            // Render a clear, stylized "Empty State" indicating a structural gap
-            containerElement.innerHTML = `
+            if (basketName !== "Non-IEOR") {
+                const status = evaluateBasketStatus(basketName, topics);
+                const badgeSpan = document.createElement("span");
+                badgeSpan.className = `status-badge ${status.class}`;
+                badgeSpan.textContent = status.text;
+                headerContainer.appendChild(badgeSpan);
+            }
+        }
+
+        // 2. Render topic rows
+        if (topics.length === 0) {
+            listContainer.innerHTML = `
                 <div class="empty-basket-alert">
                     <span class="warning-icon">⚠️</span>
-                    <p class="gap-text">No prerequisite topics covered in your college curriculum.</p>
+                    <p class="gap-text">Critical domain vacancy. Target self-study modules before course registration.</p>
                 </div>`;
         } else {
-            // Build out the bulleted mapping list item by item
             topics.forEach(topicText => {
                 const listItem = document.createElement("li");
                 listItem.className = "syllabus-topic-item";
                 listItem.textContent = topicText;
-                containerElement.appendChild(listItem);
+                listContainer.appendChild(listItem);
             });
         }
     });
