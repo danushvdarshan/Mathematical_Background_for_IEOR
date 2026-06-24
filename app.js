@@ -849,43 +849,32 @@ document.addEventListener("DOMContentLoaded", () => {
     if (collegeSelect && basketsGrid) {
         collegeSelect.addEventListener("change", (event) => {
             const selectedProgram = event.target.value;
-            const data = curriculumData[selectedProgram];
 
-            if (!data) return;
+            // Stop if choice is invalid or empty in the nitProfiles dataset
+            if (!nitProfiles[selectedProgram]) return;
 
-            // Trigger smooth visual collapse state
+            // Trigger smooth visual collapse state before shifting data
             basketsGrid.classList.add("hidden");
             if (actionPlanBox) actionPlanBox.style.display = "none";
 
             // Allow animation frame time to settle before revealing new data
             setTimeout(() => {
-                // Populate individual baskets dynamically
-                populateList("linear-algebra-list", data.la);
-                populateList("optimization-list", data.opt);
-                populateList("probability-stats-list", data.prob);
-                populateList("stochastic-list", data.stoch);
-                populateList("calculus-list", data.calc);
-                populateList("non-ieor-list", data.non);
+                // Call your primary Section 5 engine to handle badges, lists, and resources
+                renderStudentBaskets(selectedProgram);
 
-                // Build action plan bridging layout
-                if (actionPlanBox) {
-                    generateActionPlan(actionPlanBox, data.gaps);
-                    actionPlanBox.style.display = "block";
-                }
-
-                // Smoothly fade back in
+                // Smoothly fade the populated grid back into view
                 basketsGrid.classList.remove("hidden");
             }, 250);
         });
     }
 });
 
-// --- CORE ENGINE INJECTION POPULATORS ---
+// --- CORE ENGINE TABLE INJECTION ---
 
 // Populate the main 76-subject curriculum mapping comparison grid
 function populateHomeCourseTable() {
     const tableBody = document.getElementById("ieor-courses-table-body");
-    if (!tableBody) return; // Silent exit if table container isn't present
+    if (!tableBody) return; // Silent exit if table container isn't present on this view
     
     tableBody.innerHTML = ""; 
 
@@ -904,31 +893,4 @@ function populateHomeCourseTable() {
         `;
         tableBody.appendChild(row);
     });
-}
-
-// Populate individual list structures with empty-state safety fallbacks
-function populateList(elementId, topics) {
-    const list = document.getElementById(elementId);
-    if (!list) return;
-    
-    if (!topics || topics.length === 0) {
-        list.innerHTML = `<li class="empty-notice">No explicit coverage found in source curriculum.</li>`;
-        return;
-    }
-
-    list.innerHTML = topics.map(topic => `<li>${topic}</li>`).join('');
-}
-
-// Generate structural strategy tags inside action plan panel
-function generateActionPlan(container, gaps) {
-    container.innerHTML = `
-        <h2>Self-Study Bridging Strategy &amp; Action Plan</h2>
-        <p class="plan-intro">To align perfectly with the target IIT Bombay IEOR prerequisites, the candidate must bridge the following curriculum deficiencies:</p>
-        <div class="gap-tags-container">
-            ${gaps.map(gap => `<span class="gap-tag">${gap}</span>`).join('')}
-        </div>
-        <div class="action-footer-note">
-            <strong>Recommended Priority:</strong> Focus on missing <em>Optimization</em> and <em>Stochastic</em> foundations prior to Semester 1 registration.
-        </div>
-    `;
 }
