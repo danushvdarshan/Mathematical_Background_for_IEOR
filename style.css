@@ -483,3 +483,52 @@ body {
     from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ==========================================================================
+   COLORFUL ACCORDION DOMAIN BASKETS (TOP FRAMEWORK)
+   ========================================================================== */
+.syllabus-accordion-container .accordion-item {
+    border: 1px solid transparent !important;
+    margin-bottom: 8px;
+    border-radius: 10px;
+}
+
+/* Domain A: Linear Algebra (Soft Lavender) */
+.syllabus-accordion-container .accordion-item:nth-child(1) {
+    background: #f3f0ff !important;
+    border-color: #d6bcfa !important;
+}
+.syllabus-accordion-container .accordion-item:nth-child(1) button { color: #553c9a !important; }
+.syllabus-accordion-container .accordion-item:nth-child(1) ul li { color: #44337a !important; }
+
+/* Domain B: Optimization (Soft Green) */
+.syllabus-accordion-container .accordion-item:nth-child(2) {
+    background: #f0fff4 !important;
+    border-color: #9ae6b4 !important;
+}
+.syllabus-accordion-container .accordion-item:nth-child(2) button { color: #276749 !important; }
+.syllabus-accordion-container .accordion-item:nth-child(2) ul li { color: #22543d !important; }
+
+/* Domain C: Probability (Soft Orange) */
+.syllabus-accordion-container .accordion-item:nth-child(3) {
+    background: #fffaf0 !important;
+    border-color: #fbd38d !important;
+}
+.syllabus-accordion-container .accordion-item:nth-child(3) button { color: #c05621 !important; }
+.syllabus-accordion-container .accordion-item:nth-child(3) ul li { color: #9c4221 !important; }
+
+/* Domain D: Stochastic (Soft Blue) */
+.syllabus-accordion-container .accordion-item:nth-child(4) {
+    background: #ebf8ff !important;
+    border-color: #90cdf4 !important;
+}
+.syllabus-accordion-container .accordion-item:nth-child(4) button { color: #2b6cb0 !important; }
+.syllabus-accordion-container .accordion-item:nth-child(4) ul li { color: #2a4365 !important; }
+
+/* Domain E: Calculus (Soft Pink) */
+.syllabus-accordion-container .accordion-item:nth-child(5) {
+    background: #fff5f7 !important;
+    border-color: #feb2b2 !important;
+}
+.syllabus-accordion-container .accordion-item:nth-child(5) button { color: #9b2c2c !important; }
+.syllabus-accordion-container .accordion-item:nth-child(5) ul li { color: #742a2a !important; }
