@@ -5,7 +5,7 @@
     --bg-white: #f5f5f7; /* Apple ultra-light grey surface background */
     --card-bg: rgba(255, 255, 255, 0.85);
     --text-primary: #1d1d1f; /* Premium Apple off-black */
-    --text-secondary: #424245;
+    --text-secondary: #424245; /* Medium dark grey for lists */
     --text-muted: #86868b; /* Apple standard muted grey */
     --border-color: rgba(0, 0, 0, 0.08);
     --lavender-primary: #8e8ffa;
@@ -46,7 +46,7 @@ body {
 .fluid-ribbon {
     position: absolute;
     border-radius: 50%;
-    filter: blur(90px);
+    filter: blur(80px);
     opacity: 0.35;
     mix-blend-mode: multiply;
     animation: fluidWave 22s infinite alternate ease-in-out;
@@ -193,7 +193,7 @@ body {
 }
 
 /* ==========================================================================
-   CONTROL FILTER INTERFACE (LIGHT CONTEXT)
+   CONTROL FILTER INTERFACE
    ========================================================================== */
 .control-panel {
     display: flex;
@@ -324,6 +324,7 @@ body {
 .basket-header {
     font-size: 1.2rem;
     font-weight: 700 !important;
+    color: var(--text-primary) !important;
     padding-bottom: 12px;
     margin-bottom: 16px;
     border-bottom: 2px solid #f5f5f7;
@@ -333,12 +334,12 @@ body {
 }
 
 /* High Visibility Indicator Color Cues */
-.color-la { border-color: var(--lavender-primary); color: #434494 !important; }
-.color-opt { border-color: #48bb78; color: #276749 !important; }
-.color-prob { border-color: #ed8936; color: #9c4221 !important; }
-.color-stoch { border-color: #4299e1; color: #2b6cb0 !important; }
-.color-calc { border-color: #9f7aea; color: #553c9a !important; }
-.color-non { border-color: #a0aec0; color: #4a5568 !important; }
+.color-la { border-bottom-color: var(--lavender-primary); color: #434494 !important; }
+.color-opt { border-bottom-color: #48bb78; color: #276749 !important; }
+.color-prob { border-bottom-color: #ed8936; color: #9c4221 !important; }
+.color-stoch { border-bottom-color: #4299e1; color: #2b6cb0 !important; }
+.color-calc { border-bottom-color: #9f7aea; color: #553c9a !important; }
+.color-non { border-bottom-color: #a0aec0; color: #4a5568 !important; }
 
 .topic-list {
     list-style-type: none;
@@ -356,14 +357,6 @@ body {
     border-left: 3.5px solid rgba(0, 0, 0, 0.15);
 }
 
-/* Custom left borders matching the core indicators for items */
-.basket-card:nth-of-type(1) li { border-left-color: var(--lavender-primary); }
-.basket-card:nth-of-type(2) li { border-left-color: #48bb78; }
-.basket-card:nth-of-type(3) li { border-left-color: #ed8936; }
-.basket-card:nth-of-type(4) li { border-left-color: #4299e1; }
-.basket-card:nth-of-type(5) li { border-left-color: #9f7aea; }
-.basket-card:nth-of-type(6) li { border-left-color: #a0aec0; }
-
 /* ==========================================================================
    MATHEMATICAL SYLLABUS CORE FRAMEWORK (ACCORDION)
    ========================================================================== */
@@ -375,6 +368,11 @@ body {
     color: var(--text-secondary);
     font-size: 0.98rem;
     line-height: 1.5;
+}
+
+.accordion-item {
+    border: 1px solid var(--border-color) !important;
+    background: #ffffff !important;
 }
 
 .accordion-item button {
@@ -392,12 +390,20 @@ body {
     padding: 8px 0;
 }
 
+.accordion-item ul li {
+    color: var(--text-secondary) !important;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+}
+
 /* ==========================================================================
    TARGETED SELF-STUDY ACTION HUB
    ========================================================================== */
 .action-plan-card {
     border-left: 5px solid var(--gap-warning);
     background: #ffffff;
+    margin-top: 40px;
+    padding: 2rem;
 }
 
 .action-plan-card h2 {
