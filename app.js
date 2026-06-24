@@ -520,3 +520,220 @@ const ieorCourseMatrix = {
         "Calculus": 0
     }
 };
+
+// 3. THE NIT PROFILES (For the 6-Basket view)
+const nitProfiles = {
+    "svnit_surat": {
+        "Linear Algebra": [
+            "Matrices, Determinant, and Rank of a Matrix",
+            "Elementary Row Operations (Echelon & Normal Forms)",
+            "Inverse of a Matrix via Gauss-Jordan Method",
+            "Systems of Linear Homogeneous & Non-Homogeneous Equations",
+            "Eigenvalues, Eigenvectors, and Cayley-Hamilton Theorem"
+        ],
+        "Optimization": [], // Left empty intentionally
+        "Probability & Statistics": [
+            "Random Variables, Discrete & Continuous Distributions",
+            "Probability Density Function (PDF) & Cumulative Distribution Function (CDF)",
+            "Expectation, Variance, Moments, and Moment Generating Functions (MGF)",
+            "Standard Distributions (Binomial, Poisson, Normal)",
+            "Bivariate Distributions (Joint, Marginal, and Conditional Distributions)"
+        ],
+        "Stochastic Processes": [], // Left empty intentionally
+        "Calculus": [
+            "Multivariable Calculus: Functions of several variables & Partial Derivatives",
+            "Total Derivative & Euler's Theorem on Homogeneous Functions",
+            "Taylor's and Maclaurin's Series for two variables",
+            "Maxima & Minima of two variables and Lagrange Multipliers",
+            "First-order ODEs (Exact, Reducible, Linear, Bernoulli equations)",
+            "Higher-order Linear Differential Equations with Constant Coefficients",
+            "Method of Variation of Parameters"
+        ],
+        "Non-IEOR": [
+            "Curve Tracing (Cartesian and Polar forms)",
+            "Evaluation of Infinite Integrals (Beta and Gamma functions)",
+            "Rectification, Quadrature, Volume & Surface Area of Revolution",
+            "Infinite Series Convergence (Ratio, Comparison, Integral, Root, Leibniz tests)"
+        ]
+    }
+    "vnit_nagpur": {
+        "Linear Algebra": [
+            "Matrices: Rank of matrix and Consistency of linear systems",
+            "Eigenvalues, Eigenvectors, and Cayley-Hamilton Theorem",
+            "Diagonalization of matrices"
+        ],
+        "Optimization": [], // Left empty intentionally
+        "Probability & Statistics": [
+            "Probability Theory: Axioms, Conditional Probability, and Bayes Theorem",
+            "Random Variables: Discrete & Continuous variables (PMF, PDF, CDF)",
+            "Mathematical Expectation: Expectation, Variance, and MGF",
+            "Standard Distributions: Binomial, Poisson, and Normal Distributions"
+        ],
+        "Stochastic Processes": [], // Left empty intentionally
+        "Calculus": [
+            "Partial Differentiation: Taylor's theorem, Maxima & Minima for two variables",
+            "Lagrange's Multipliers for constrained optimization",
+            "Multiple Integrals: Double & Triple Integrals, Change of order/variables",
+            "Jacobians and structural applications to Area and Volume",
+            "Vector Calculus: Gradient, Divergence, and Curl",
+            "Vector Line and Surface Integrals",
+            "Vector Integral Theorems: Green's, Stokes', and Gauss Divergence Theorems",
+            "Ordinary Differential Equations: First-order exact differential equations",
+            "Higher-order linear ODEs with constant coefficients & Variation of Parameters"
+        ],
+        "Non-IEOR": [
+            "Fourier Series: Euler's formulae, Dirichlet's conditions, and Half-range series",
+            "Numerical Methods: Roots of equations (Regula-Falsi, Newton-Raphson)",
+            "Numerical Linear Algebra: Gauss elimination and Gauss-Seidel methods"
+        ]
+    }
+   "nitc_eng_phys": {
+        "Linear Algebra": [
+            "Vector Spaces & Linear Transformations (Review, Minimal Polynomials, Diagonalizability)",
+            "Inner Product Spaces (Norms, Orthonormal Basis, Orthogonal Complement, Direct Sum, Orthogonal Projection)",
+            "Subspace Orthogonality & Operator Adjoints (Null-space & Range of Adjoint)",
+            "Self-Adjoint & Normal Operators (Spectral Theorem for self-adjoint & normal operators)",
+            "Advanced Structural Theorems (Schur's Theorem, Riesz Representation Theorem)",
+            "Singular Value Decomposition (SVD) & Low-Rank Approximation",
+            "Data & Optimization Approximations (Eckart-Young Theorem, Pseudoinverse, Least Square Approximation)"
+        ],
+        "Optimization": [], // Left empty intentionally
+        "Probability & Statistics": [
+            "Probability Theory Foundations: Axioms, Conditional Probability, and Bayes Theorem",
+            "Random Variables: Expectation, Mean, Variance, and Moment Generating Functions (MGF)",
+            "Tail Bounds & Concentration Inequalities: Chebyshev's Inequality",
+            "Discrete Probability Distributions: Binomial, Poisson, and Geometric Distributions",
+            "Continuous Probability Distributions: Uniform, Exponential, Normal, Gamma, and Beta Distributions",
+            "Bivariate Distributions: Joint, Marginal, and Conditional Distributions, Covariance & Correlation Coefficients",
+            "Variables Transformations: Probability distribution of a function of random variables",
+            "Sampling Theory: Population and Samples, Central Limit Theorem, Sampling Distributions (t, Chi-Square, and F distributions)",
+            "Statistical Estimation: Point Estimation, Interval Estimation, and Confidence Intervals for Mean and Variance",
+            "Hypothesis Testing: Type I & Type II errors, Z-test, t-test, and Chi-square Goodness-of-Fit test"
+        ],
+        "Stochastic Processes": [], // Left empty intentionally
+        "Calculus": [
+            "Single Variable Calculus: Mean Value Theorems & Taylor expansions",
+            "Multivariable Calculus: Partial derivatives, Jacobians, Maxima & Minima",
+            "Lagrange Multipliers for constrained systems",
+            "Multiple Integrals: Double & Triple integration (Area & Volume)",
+            "Vector Calculus: Gradient, Divergence, Curl, Line & Surface integrals",
+            "Vector Theorems: Green's, Stokes', and Gauss Divergence Theorems",
+            "Linear ODEs: Higher-order constant coefficients & Variation of Parameters",
+            "Power Series Solutions: Frobenius method, Legendre & Bessel functions"
+        ],
+        "Non-IEOR": [
+            "Complex Analysis: Analyticity, Cauchy-Riemann equations, Conformal mappings",
+            "Complex Integration: Cauchy’s Integral Theorem & Formula",
+            "Series & Residues: Taylor/Laurent series & Cauchy’s Residue Theorem",
+            "Laplace Transforms: Inverse transforms, Convolution, and ODE applications",
+            "Fourier Analysis: Fourier Series, Half-range expansions, and Fourier Transforms"
+        ]
+    }
+    "nitc_mech": {
+        "Linear Algebra": [
+            "Systems of linear equations, Gauss elimination, and Row echelon form",
+            "Matrix Rank and checking the Consistency of linear systems",
+            "Real Vector Spaces: Subspaces, Linear Independence, Basis & Dimension",
+            "Linear Transformations and their Matrix Representations",
+            "Eigenvalues, Eigenvectors, Characteristic Polynomials, and Diagonalization",
+            "Cayley-Hamilton Theorem",
+            "Special Real Matrices (Symmetric, Skew-symmetric, and Orthogonal matrices)"
+        ],
+        "Optimization": [], // Left empty intentionally
+        "Probability & Statistics": [
+            "Random Variables: Expectations, Mean, Variance, MGF, and Chebyshev's Theorem",
+            "Probability Distributions: Binomial, Poisson, Geometric, Hyper-geometric, Normal, Uniform, Gamma, and Beta",
+            "Bivariate & Joint Distributions: Jointly distributed random variables, Marginal & Conditional profiles, Bi-variate Normal",
+            "Sampling Distributions: Sampling distribution of Mean (Sigma known/unknown) and Variance",
+            "Statistical Estimation: Point & Interval estimation of Mean/Variance, Maximum Likelihood Estimation (MLE)",
+            "Hypothesis Testing: Tests concerning one/two Means, one/two Variances, and Proportions",
+            "Categorical & Goodness-of-Fit Analysis: r x c Contingency Tables and Chi-square Goodness-of-Fit Test",
+            "Analysis of Variance (ANOVA): Completely Randomized and Randomized Block Designs",
+        ],
+        "Stochastic Processes": [], // Left empty intentionally
+        "Calculus": [
+            "Single Variable Calculus: Mean Value Theorems & Taylor expansions",
+            "Multivariable Calculus: Partial derivatives, Jacobians, Maxima & Minima",
+            "Lagrange Multipliers for constrained optimization systems",
+            "Multiple Integrals: Double & Triple integration across Cylindrical/Spherical coordinates",
+            "Vector Calculus: Gradient, Divergence, Curl, Line, Surface & Volume integrals",
+            "Vector Theorems: Green's, Stokes', and Gauss Divergence Theorems",
+            "Ordinary Differential Equations: First-order Linear/Bernoulli and Higher-order constant coefficient linear ODEs",
+            "Method of Variation of Parameters for ODEs",
+            "Partial Differential Equations: Formulation, Lagrange's PDE, and Charpit's method",
+            "Higher-order linear PDEs with constant coefficients & Second-order classification",
+            "Boundary Value Problems: Separation of variables for Wave, Heat, and Laplace equations"
+        ],
+        "Non-IEOR": [
+            "Complex Variables: Analyticity, Cauchy-Riemann equations, and Conformal mappings",
+            "Complex Integration: Cauchy’s Integral Theorem, Formula, and Residue Theorem",
+            "Complex Series expansion: Taylor and Laurent series expansions with Singularity analysis",
+            "Fourier Analysis: Fourier Series under Dirichlet conditions, Half-range series, and Fourier Transforms",
+            "Laplace Transforms: Properties, Inverse transforms, Convolution, and applications to ODEs",
+            "Numerical Methods: Roots of equations (Bisection, Regula-Falsi, Newton-Raphson)",
+            "Numerical Integration: Trapezoidal rule, Simpson's 1/3rd, and Simpson's 3/8th rules"
+        ]
+    }
+    
+};
+
+// 4. THE UI RENDERING ENGINE
+function renderStudentBaskets(selectedCollegeKey) {
+    const profile = nitProfiles[selectedCollegeKey];
+    
+    if (!profile) {
+        console.error("Profile key not found in database:", selectedCollegeKey);
+        return;
+    }
+
+    // Array matching your 6 structural DOM container IDs in index.html
+    const basketIds = {
+        "Linear Algebra": "linear-algebra-list",
+        "Optimization": "optimization-list",
+        "Probability & Statistics": "probability-stats-list",
+        "Stochastic Processes": "stochastic-list",
+        "Calculus": "calculus-list",
+        "Non-IEOR": "non-ieor-list"
+    };
+
+    // Loop through each domain and inject the structured syllabus items
+    Object.keys(basketIds).forEach(basketName => {
+        const containerElement = document.getElementById(basketIds[basketName]);
+        if (!containerElement) return;
+
+        // Clear out any placeholder content first
+        containerElement.innerHTML = "";
+
+        const topics = profile[basketName];
+
+        if (!topics || topics.length === 0) {
+            // Render a clear, stylized "Empty State" indicating a structural gap
+            containerElement.innerHTML = `
+                <div class="empty-basket-alert">
+                    <span class="warning-icon">⚠️</span>
+                    <p class="gap-text">No prerequisite topics covered in your college curriculum.</p>
+                </div>`;
+        } else {
+            // Build out the bulleted mapping list item by item
+            topics.forEach(topicText => {
+                const listItem = document.createElement("li");
+                listItem.className = "syllabus-topic-item";
+                listItem.textContent = topicText;
+                containerElement.appendChild(listItem);
+            });
+        }
+    });
+}
+
+// 5. EVENT LISTENERS
+document.addEventListener("DOMContentLoaded", () => {
+    const collegeSelectElement = document.getElementById("college-selector");
+
+    if (collegeSelectElement) {
+        collegeSelectElement.addEventListener("change", (event) => {
+            const selectedValue = event.target.value; // e.g., "nitc_mech" or "vnit_nagpur"
+            renderStudentBaskets(selectedValue);
+        });
+    }
+});
+
