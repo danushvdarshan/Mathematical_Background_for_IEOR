@@ -322,3 +322,73 @@ body {
     color: #d93838;
     border: 1px solid rgba(255, 123, 123, 0.25);
 }
+
+/* ==========================================================================
+   TARGETED SELF-STUDY ACTION HUB
+   ========================================================================== */
+.action-plan-card {
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(142, 143, 250, 0.2);
+}
+
+.action-plan-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.plan-intro {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+
+.plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.plan-item {
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+}
+
+.plan-item h4 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plan-critical { border-left: 4px solid var(--gap-warning); }
+.plan-warning { border-left: 4px solid #ff9234; }
+
+.severity-tag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #f4f4f5;
+    color: #52525b;
+}
+
+.plan-critical .severity-tag { background: rgba(255, 123, 123, 0.15); color: #d93838; }
+.plan-warning .severity-tag { background: rgba(255, 146, 52, 0.15); color: #b85c10; }
+
+.plan-item p {
+    font-size: 0.88rem;
+    line-height: 1.4;
+    color: #444446;
+    margin-bottom: 8px;
+}
+
+.resource-tip {
+    background-color: rgba(142, 143, 250, 0.05);
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(142, 143, 250, 0.1);
+}
